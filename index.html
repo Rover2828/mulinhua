@@ -3,188 +3,1284 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MULINHUA高端女鞋品牌官网，传承意大利手工制鞋工艺，打造优雅女性鞋履">
-    <title>MULINHUA | 高端女鞋品牌</title>
-    
-    <!-- 核心样式 -->
+    <title>MULINHUA - 高端女鞋品牌</title>
+    <!-- SEO & 国际化增强 -->
+    <meta name="description" content="MULINHUA - 高端女鞋品牌，意大利手工，限量典藏，百年工艺传承。">
+    <meta name="keywords" content="女鞋,高端,手工,意大利,限量,时尚,品牌,定制,奢侈品,穆林花">
+    <meta name="author" content="MULINHUA">
+    <meta property="og:title" content="MULINHUA - 高端女鞋品牌">
+    <meta property="og:description" content="意大利手工，限量典藏，百年工艺传承。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MULINHUA - 高端女鞋品牌">
+    <meta name="twitter:description" content="意大利手工，限量典藏，百年工艺传承。">
+    <meta name="twitter:image" content="logo.png">
+    <link rel="alternate" href="/en/" hreflang="en" />
+    <link rel="alternate" href="/" hreflang="zh-CN" />
+    <link rel="alternate" href="/" hreflang="x-default" />
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="canonical" href="https://www.mulinhua.com/" />
+    <!-- 性能优化：预加载关键资源 -->
+    <link rel="preload" href="logo.png" as="image">
+    <link rel="preconnect" href="https://cdn.bootcdn.net" crossorigin>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
     <style>
-    :root {
-        --primary-color: #8B4513;
-        --accent-color: #DAA520;
-        --transition-speed: 0.3s;
-    }
-
-    body {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        line-height: 1.6;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    /* 响应式图片 */
-    img {
-        max-width: 100%;
-        height: auto;
-        transition: transform var(--transition-speed) ease;
-    }
-
-    /* 表格增强 */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 25px 0;
-        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-
-    th, td {
-        padding: 12px 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    tr:hover {
-        background-color: #f5f5f5;
-    }
-
-    /* 移动端优化 */
-    @media (max-width: 768px) {
-        table {
-            display: block;
-            overflow-x: auto;
+        /* 世界级：色彩无障碍、暗黑模式、动效、可访问性、微交互、视觉层级、细节极致 */
+        :root {
+            --primary-color: #232323;
+            --accent-color: #d4af37;
+            --footer-bg: #181818;
+            --footer-link: #bbbbbb;
+            --focus-outline: 2px solid #d4af37;
         }
-        
-        .social-icon {
-            width: 25px;
-            height: 25px;
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary-color: #f5f5f5;
+                --footer-bg: #111;
+                --footer-link: #e0e0e0;
+                background: #181818;
+            }
+            body { background: #181818; color: var(--primary-color); }
+            .navbar, .product-card, .bg-light { background: #232323 !important; color: #f5f5f5; }
+            .dropdown-menu { background: #232323; }
         }
-    }
+        /* 色彩对比增强 */
+        .btn-primary, .btn-dark, .btn-outline-dark, .btn-outline-light {
+            outline: none;
+        }
+        .btn:focus, .form-control:focus, .nav-link:focus {
+            outline: var(--focus-outline) !important;
+            box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent-color);
+        }
+        /* 微交互：按钮波纹 */
+        .btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn::after {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 0; height: 0;
+            background: rgba(212,175,55,0.18);
+            border-radius: 100%;
+            transform: translate(-50%,-50%);
+            transition: width 0.4s cubic-bezier(.4,2,.6,1), height 0.4s cubic-bezier(.4,2,.6,1);
+            z-index: 0;
+        }
+        .btn:active::after {
+            width: 200%; height: 200%;
+        }
+        .btn > * { position: relative; z-index: 1; }
+        /* 卡片浮层视觉层级 */
+        .product-card {
+            z-index: 1;
+        }
+        .product-card:hover {
+            z-index: 2;
+        }
+        /* 视觉动效：卡片进入动画 */
+        .product-card { opacity: 0; transform: translateY(40px) scale(0.98); animation: cardIn 0.8s cubic-bezier(.4,2,.6,1) forwards; }
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        @keyframes cardIn {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        /* 页脚社交icon无障碍焦点 */
+        .footer-social a:focus svg {
+            outline: var(--focus-outline);
+            box-shadow: 0 0 0 4px rgba(212,175,55,0.2);
+        }
+        /* 页脚版权对比度提升 */
+        .copyright {
+            color: #b3b3b3;
+            letter-spacing: 1px;
+        }
+        /* 视觉辅助：跳转主内容 */
+        .skip-link {
+            position: absolute;
+            left: -999px;
+            top: 0;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 8px 20px;
+            z-index: 9999;
+            border-radius: 0 0 1rem 1rem;
+            font-weight: bold;
+            transition: left 0.2s;
+        }
+        .skip-link:focus {
+            left: 16px;
+        }
 
-    /* 品牌主视觉 */
-    .brand-header {
-        text-align: center;
-        padding: 2rem;
-        background: linear-gradient(45deg, #f8f9fa, #ffffff);
-        margin-bottom: 2rem;
-    }
+        body {
+            font-family: 'Microsoft YaHei', system-ui, -apple-system, 'Helvetica Neue', Arial, 'PingFang SC', sans-serif;
+            background: #fff;
+            color: var(--primary-color);
+        }
+
+        /* 响应式字体与间距优化 */
+        html { scroll-behavior: smooth; }
+        h1, h2, h5 { letter-spacing: 2px; }
+        .display-1 { font-size: 4rem; font-weight: 800; }
+        @media (max-width: 768px) {
+            .display-1 { font-size: 2.5rem; }
+            .product-img { height: 180px; }
+            .row.g-4 { gap: 2rem !important; }
+        }
+        @media (max-width: 576px) {
+            .navbar-brand img { height: 36px; }
+            .product-img { height: 120px; }
+        }
+
+        .navbar {
+            background: #fff !important;
+            box-shadow: 0 2px 8px rgba(44,44,44,0.04);
+        }
+        .navbar-brand img {
+            height: 50px;
+            transition: transform 0.3s;
+        }
+        .navbar-nav .nav-link {
+            color: var(--primary-color) !important;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            color: var(--accent-color) !important;
+        }
+        .dropdown-menu {
+            box-shadow: 0 4px 16px rgba(44,44,44,0.08);
+            border-radius: 0.5rem;
+        }
+        .dropdown-item:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+        .navbar-toggler {
+          position: relative;
+        }
+        .navbar-toggler .navbar-toggler-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+
+        .btn-primary, .btn-dark, .btn-outline-dark, .btn-outline-light {
+            border-radius: 2rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-primary, .btn-dark {
+            background: var(--accent-color);
+            border: none;
+            color: #fff;
+        }
+        .btn-primary:hover, .btn-dark:hover {
+            background: #bfa13a;
+            color: #fff;
+        }
+        .btn-outline-light {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
+        }
+        .btn-outline-light:hover {
+            background: var(--accent-color);
+            color: #fff;
+        }
+        .btn-outline-dark {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline-dark:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 1rem;
+            box-shadow: 0 2px 8px rgba(44,44,44,0.04);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            background: #fff;
+        }
+        .product-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(44,44,44,0.10);
+        }
+        .product-img {
+            height: 320px;
+            object-fit: cover;
+            width: 100%;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        .text-accent {
+            color: var(--accent-color) !important;
+        }
+        .collection-banner {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('hero-bg.jpg') center/cover;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+        .hover-zoom {
+            transition: transform 0.3s;
+        }
+        .hover-zoom:hover {
+            transform: scale(1.05);
+        }
+        /* 页脚优化 */
+        footer {
+            background: var(--footer-bg);
+            color: #fff;
+        }
+        footer a {
+            color: var(--footer-link);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: var(--accent-color);
+        }
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .footer-social a {
+            color: #fff;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+        .footer-social a:hover {
+            color: var(--accent-color);
+        }
+        .copyright {
+            text-align: center;
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+        }
+
+        /* 细节动画 */
+        .btn-primary, .btn-outline-light, .btn-outline-dark {
+            box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+        }
+        .btn-primary:active, .btn-outline-light:active, .btn-outline-dark:active {
+            transform: scale(0.97);
+        }
+        .product-card {
+            transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+        }
+        /* 卡片悬浮阴影更柔和 */
+        .product-card:hover {
+            box-shadow: 0 12px 32px rgba(44,44,44,0.13);
+        }
+        /* 页脚社交icon动画 */
+        .footer-social a svg { transition: transform 0.2s; }
+        .footer-social a:hover svg { transform: scale(1.2) rotate(-8deg); }
+        /* 页脚输入框美化 */
+        .input-group .form-control {
+            border-radius: 2rem 0 0 2rem;
+            border-right: 0;
+        }
+        .input-group .btn {
+            border-radius: 0 2rem 2rem 0;
+        }
+        /* 视觉分割线 */
+        section:not(:first-of-type) {
+            border-top: 1px solid #f2f2f2;
+        }
+        /* 视觉焦点动画 */
+        .collection-banner h1 {
+            animation: fadeInDown 1s cubic-bezier(.4,2,.6,1);
+        }
+        .collection-banner .btn {
+            animation: fadeInUp 1.2s cubic-bezier(.4,2,.6,1);
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 更专业的滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #f5f5f5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e0e0e0;
+            border-radius: 4px;
+        }
+        ::selection {
+            background: var(--accent-color);
+            color: #fff;
+        }
+
+        /* 语言切换样式 */
+        .lang-switch { position: absolute; right: 2rem; top: 1.2rem; z-index: 100; }
+        .lang-switch button { background: none; border: none; color: var(--primary-color); font-weight: bold; margin-left: 8px; cursor: pointer; }
+        .lang-switch button.active { color: var(--accent-color); text-decoration: underline; }
+
+        /* 购物车按钮始终置顶层 */
+        #cartBtn {
+            z-index: 9999 !important;
+            position: fixed !important;
+            top: 1.2rem;
+            right: 12rem;
+            pointer-events: auto;
+        }
+        /* 语言切换、用户栏、登录栏层级适当降低，避免覆盖购物车 */
+        .lang-switch { z-index: 100 !important; }
+        #userBar { z-index: 101 !important; }
+        #authBtns { z-index: 100 !important; }
     </style>
-    
-    <!-- 预加载关键资源 -->
-    <link rel="preload" href="https://mulinhua.com/2025-ss.jpg" as="image">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdn.bootcdn.net; style-src 'self' 'nonce-mlh2025' https://cdn.bootcdn.net; img-src 'self' data: https://cdn.bootcdn.net; script-src 'self' https://cdn.bootcdn.net 'nonce-mlh2025';">
 </head>
-
 <body>
-    <header class="brand-header">
-        <img src="https://mulinhua.com/logo.png" alt="MULINHUA品牌Logo" width="200" height="200" loading="lazy">
-        <h1>MULINHUA 高端女鞋品牌</h1>
-        <p>以匠心工艺，诠释女性优雅力量</p>
-    </header>
+    
+    <!-- 右上角用户操作栏 -->
+    <div id="userBar" style="position:fixed;top:1.2rem;right:7rem;z-index:201;"></div>
+    <!-- 右上角登录/注册/找回密码按钮 -->
+    <div id="authBtns" style="position:fixed;top:1.2rem;right:2rem;z-index:200;">
+      <button class="btn btn-outline-dark me-2" onclick="new bootstrap.Modal(document.getElementById('loginModal')).show()">登录</button>
+      <button class="btn btn-outline-dark me-2" onclick="new bootstrap.Modal(document.getElementById('registerModal')).show()">注册</button>
+      <button class="btn btn-outline-dark" onclick="new bootstrap.Modal(document.getElementById('forgotModal')).show()">找回密码</button>
+    </div>
+    <!-- 右上角购物车按钮 -->
+    <button id="cartBtn" class="btn btn-accent position-fixed" style="top:1.2rem;right:12rem;z-index:200;" onclick="new bootstrap.Modal(document.getElementById('cartModal')).show()">
+      🛒 <span id="cartCount" class="badge bg-danger">0</span>
+    </button>
 
-    <nav aria-label="快速导航">
-        <h2>🛍️ 快速导航</h2>
-        <ul>
-            <li><a href="#最新系列">最新系列</a></li>
-            <li><a href="#品牌故事">品牌故事</a></li>
-            <li><a href="#购物指南">购物指南</a></li>
-            <li><a href="#客户服务">客户服务</a></li>
-        </ul>
+    <!-- 语言切换按钮 -->
+    <div class="lang-switch" aria-label="切换语言">
+      <button onclick="switchLang('zh-CN')" data-lang="zh-CN" class="active" aria-current="true">中文</button>
+      <button onclick="switchLang('en')" data-lang="en">EN</button>
+    </div>
+
+    <!-- 跳转主内容链接 -->
+    <a href="#main-content" class="skip-link">跳到主内容</a>
+
+    <!-- 面包屑导航 -->
+    <nav aria-label="面包屑导航" class="bg-light border-bottom">
+      <ol class="breadcrumb container py-2 mb-0">
+        <li class="breadcrumb-item"><a href="#">首页</a></li>
+        <li class="breadcrumb-item active" aria-current="page">明星系列</li>
+      </ol>
     </nav>
 
-    <section id="品牌故事">
-        <h2>🌟 品牌故事</h2>
-        <blockquote>
-            <p>"每一针一线都是对美的极致追求"</p>
-        </blockquote>
-        <article>
-            <p>MULINHUA创立于2010年，源自意大利手工制鞋世家。我们坚持采用<a href="https://mulinhua.com/material#leather">托斯卡纳小牛皮</a>和<a href="https://mulinhua.com/material#hardware">瑞士定制金属配件</a>，每双鞋履经历<strong>128道工序</strong>、<strong>72小时质检</strong>，成就无可挑剔的穿着体验。</p>
-            
-            <h3>核心工艺</h3>
-            <ol>
-                <li><strong>立体剪裁技术</strong> - 根据足部生物力学定制版型</li>
-                <li><strong>空气缓震系统</strong> - 专利编号：ZL2024 3 0602345.6</li>
-                <li><strong>可持续环保</strong> - 100%可降解包装材料</li>
-            </ol>
-        </article>
+    <main id="main-wrapper">
+      <h1 class="sr-only">MULINHUA 高端女鞋品牌 - 意大利手工制作</h1>
+      <section class="collection-banner text-white" id="main-content">
+        <div class="container text-center">
+          <h2 class="display-1 mb-4" data-i18n="mainTitle">2025 秋季高定系列</h2>
+          <p class="lead mb-4" data-i18n="mainDesc">意大利手工制作 | 限量典藏款</p>
+          <a href="#maincontent" class="btn btn-outline-light btn-lg px-5" data-i18n="exploreBtn">立即探索</a>
+        </div>
+      </section>
+
+      <!-- 精选系列 -->
+      <section class="py-5" id="maincontent">
+        <div class="container">
+          <h2 class="text-center mb-5" data-i18n="featuredTitle">明星系列</h2>
+          <div class="row g-4" id="products">
+            <div class="col-md-6 col-lg-3">
+              <article class="product-card h-100 d-flex flex-column shadow-sm" itemscope itemtype="http://schema.org/Product">
+                <img src="product1.webp" srcset="product1-480.webp 480w, product1-800.webp 800w" sizes="(max-width:600px) 480px, 800px" class="card-img-top product-img hover-zoom" alt="水晶之夜系列高跟鞋 - 意大利手工镶嵌施华洛世奇水晶晚宴鞋款" loading="lazy" decoding="async" itemprop="image">
+                <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                  <h5 class="card-title" data-i18n="product1Title" itemprop="name">水晶之夜系列</h5>
+                  <p class="text-muted" data-i18n="product1Desc" itemprop="description">手工镶嵌施华洛世奇水晶，璀璨闪耀，适合晚宴与重要场合。</p>
+                  <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <span class="h5 text-accent" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span itemprop="priceCurrency" content="CNY">¥</span><span itemprop="price">3,980</span></span>
+                    <button class="btn btn-primary add-to-cart" data-id="1" aria-label="将水晶之夜系列加入购物袋" data-i18n="addToCart">加入购物袋</button>
+                  </div>
+                </div>
+              </article>
+              <script type="application/ld+json">
+              {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": "水晶之夜系列",
+                "image": "product1.webp",
+                "description": "手工镶嵌施华洛世奇水晶，璀璨闪耀，适合晚宴与重要场合。",
+                "brand": {"@type": "Brand", "name": "MULINHUA"},
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3980",
+                  "priceCurrency": "CNY",
+                  "availability": "https://schema.org/InStock",
+                  "itemCondition": "https://schema.org/NewCondition"
+                }
+              }
+              </script>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="product-card h-100 d-flex flex-column shadow-sm" itemscope itemtype="http://schema.org/Product">
+                <img src="product2.webp" srcset="product2-480.webp 480w, product2-800.webp 800w" sizes="(max-width:600px) 480px, 800px" class="card-img-top product-img hover-zoom" alt="商务典雅系列高跟鞋 - 意大利小牛皮职场鞋款" loading="lazy" decoding="async" itemprop="image">
+                <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                  <h5 class="card-title" data-i18n="product2Title" itemprop="name">商务典雅系列</h5>
+                  <p class="text-muted" data-i18n="product2Desc" itemprop="description">精选意大利小牛皮，极致舒适，彰显职场女性自信风采。</p>
+                  <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <span class="h5 text-accent" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span itemprop="priceCurrency" content="CNY">¥</span><span itemprop="price">3,680</span></span>
+                    <button class="btn btn-primary add-to-cart" data-id="2" aria-label="将商务典雅系列加入购物袋" data-i18n="addToCart">加入购物袋</button>
+                  </div>
+                </div>
+              </article>
+              <script type="application/ld+json">
+              {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": "商务典雅系列",
+                "image": "product2.webp",
+                "description": "精选意大利小牛皮，极致舒适，彰显职场女性自信风采。",
+                "brand": {"@type": "Brand", "name": "MULINHUA"},
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3680",
+                  "priceCurrency": "CNY",
+                  "availability": "https://schema.org/InStock",
+                  "itemCondition": "https://schema.org/NewCondition"
+                }
+              }
+              </script>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="product-card h-100 d-flex flex-column shadow-sm" itemscope itemtype="http://schema.org/Product">
+                <img src="product3.webp" srcset="product3-480.webp 480w, product3-800.webp 800w" sizes="(max-width:600px) 480px, 800px" class="card-img-top product-img hover-zoom" alt="休闲漫步系列运动鞋 - 轻盈鞋底柔软内衬日常鞋款" loading="lazy" decoding="async" itemprop="image">
+                <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                  <h5 class="card-title" data-i18n="product3Title" itemprop="name">休闲漫步系列</h5>
+                  <p class="text-muted" data-i18n="product3Desc" itemprop="description">轻盈鞋底，柔软内衬，适合日常出行与休闲时光。</p>
+                  <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <span class="h5 text-accent" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span itemprop="priceCurrency" content="CNY">¥</span><span itemprop="price">2,980</span></span>
+                    <button class="btn btn-primary add-to-cart" data-id="3" aria-label="将休闲漫步系列加入购物袋" data-i18n="addToCart">加入购物袋</button>
+                  </div>
+                </div>
+              </article>
+              <script type="application/ld+json">
+              {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": "休闲漫步系列",
+                "image": "product3.webp",
+                "description": "轻盈鞋底，柔软内衬，适合日常出行与休闲时光。",
+                "brand": {"@type": "Brand", "name": "MULINHUA"},
+                "offers": {
+                  "@type": "Offer",
+                  "price": "2980",
+                  "priceCurrency": "CNY",
+                  "availability": "https://schema.org/InStock",
+                  "itemCondition": "https://schema.org/NewCondition"
+                }
+              }
+              </script>
+            </div>
+            <div class="col-md-6 col-lg-3">
+              <article class="product-card h-100 d-flex flex-column shadow-sm" itemscope itemtype="http://schema.org/Product">
+                <img src="product4.webp" srcset="product4-480.webp 480w, product4-800.webp 800w" sizes="(max-width:600px) 480px, 800px" class="card-img-top product-img hover-zoom" alt="春风系列高跟鞋 - 多色可选金色扣饰春季鞋款" loading="lazy" decoding="async" itemprop="image">
+                <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                  <h5 class="card-title" data-i18n="product4Title" itemprop="name">春风系列</h5>
+                  <p class="text-muted" data-i18n="product4Desc" itemprop="description">多色可选，金色扣饰，轻盈舒适，点亮春日造型。</p>
+                  <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <span class="h5 text-accent" itemprop="offers" itemscope itemtype="http://schema.org/Offer"><span itemprop="priceCurrency" content="CNY">¥</span><span itemprop="price">3,280</span></span>
+                    <button class="btn btn-primary add-to-cart" data-id="4" aria-label="将春风系列加入购物袋" data-i18n="addToCart">加入购物袋</button>
+                  </div>
+                </div>
+              </article>
+              <script type="application/ld+json">
+              {
+                "@context": "http://schema.org/",
+                "@type": "Product",
+                "name": "春风系列",
+                "image": "product4.webp",
+                "description": "多色可选，金色扣饰，轻盈舒适，点亮春日造型。",
+                "brand": {"@type": "Brand", "name": "MULINHUA"},
+                "offers": {
+                  "@type": "Offer",
+                  "price": "3280",
+                  "priceCurrency": "CNY",
+                  "availability": "https://schema.org/InStock",
+                  "itemCondition": "https://schema.org/NewCondition"
+                }
+              }
+              </script>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-dark px-5" data-i18n="moreBtn" onclick="alert('更多系列即将上线，敬请期待！')">查看更多</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 评价区块、FAQ区块等... -->
+      <section class="py-5 bg-light" data-lang="zh-CN">
+        <div class="container">
+          <h2 class="text-center mb-5">更多客户评价</h2>
+          <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+              <div class="border rounded-3 p-4 h-100 shadow-sm bg-white">
+                <div class="mb-2"><span class="text-accent">★★★★★</span></div>
+                <blockquote class="mb-2">“物流很快，包装精美，体验感非常棒！”</blockquote>
+                <address class="text-muted small">—— 赵女士，深圳</address>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="border rounded-3 p-4 h-100 shadow-sm bg-white">
+                <div class="mb-2"><span class="text-accent">★★★★★</span></div>
+                <blockquote class="mb-2">“客服专业，推荐的尺码很合适。”</blockquote>
+                <address class="text-muted small">—— 孙小姐，杭州</address>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-5 bg-light" data-lang="zh-CN">
+        <div class="container">
+          <h2 class="text-center mb-5">更多常见问题</h2>
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq1">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                  如何选择合适的尺码？
+                </button>
+              </h2>
+              <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faq1" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">请参考尺码指南或联系客服一对一建议。</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq2">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                  如何申请退换货？
+                </button>
+              </h2>
+              <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faq2" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">登录账号后在“我的订单”页面申请，或联系客服协助。</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="faq3">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                  是否支持国际配送？
+                </button>
+              </h2>
+              <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faq3" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">支持，费用和时效请咨询客服。</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <button class="btn btn-outline-dark px-5" onclick="document.getElementById('faqAccordion').scrollIntoView({behavior:'smooth'})">更多常见问题</button>
+          </div>
+        </div>
+      </section>
+      <!-- 英文区块（可根据语言切换显示/隐藏，示例为静态） -->
+      <section class="py-5 bg-light" id="en-featured" data-lang="en" hidden>
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Collection</h2>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100 d-flex flex-column shadow-sm">
+                        <img src="product5.jpg" class="card-img-top product-img hover-zoom" alt="Crystal Night Collection" loading="lazy" decoding="async">
+                        <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Crystal Night</h5>
+                            <p class="text-muted">Hand-inlaid Swarovski crystals, dazzling for gala nights.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h5 text-accent">$599</span>
+                                <button class="btn btn-primary" aria-label="Add Crystal Night to bag">Add to Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100 d-flex flex-column shadow-sm">
+                        <img src="product6.jpg" class="card-img-top product-img hover-zoom" alt="Business Elegance" loading="lazy" decoding="async">
+                        <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Business Elegance</h5>
+                            <p class="text-muted">Premium Italian calfskin, ultimate comfort for professionals.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h5 text-accent">$549</span>
+                                <button class="btn btn-primary" aria-label="Add Business Elegance to bag">Add to Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100 d-flex flex-column shadow-sm">
+                        <img src="product7.jpg" class="card-img-top product-img hover-zoom" alt="Leisure Walk" loading="lazy" decoding="async">
+                        <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Leisure Walk</h5>
+                            <p class="text-muted">Lightweight sole, soft lining, perfect for daily outings.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h5 text-accent">$439</span>
+                                <button class="btn btn-primary" aria-label="Add Leisure Walk to bag">Add to Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="product-card h-100 d-flex flex-column shadow-sm">
+                        <img src="product8.jpg" class="card-img-top product-img hover-zoom" alt="Spring Breeze" loading="lazy" decoding="async">
+                        <div class="card-body text-center flex-grow-1 d-flex flex-column justify-content-between">
+                            <h5 class="card-title">Spring Breeze</h5>
+                            <p class="text-muted">Multiple colors, golden buckle, light and stylish for spring.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-auto">
+                                <span class="h5 text-accent">$499</span>
+                                <button class="btn btn-primary" aria-label="Add Spring Breeze to bag">Add to Bag</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="最新系列">
-        <h2>👠 2025春夏高定系列「云端漫步」</h2>
-        <table>
-            <caption>新品上市</caption>
-            <thead>
-                <tr>
-                    <th>款式编码</th>
-                    <th>材质</th>
-                    <th>跟高</th>
-                    <th>配色</th>
-                    <th>价格</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>MLH-325</td>
-                    <td>丝绸</td>
-                    <td>7cm</td>
-                    <td>霁蓝</td>
-                    <td>¥4,980</td>
-                </tr>
-                <!-- 其他行省略 -->
-            </tbody>
-        </table>
-        <figure>
-            <img src="https://mulinhua.com/2025-ss.jpg" alt="春夏系列主推款" width="600" height="400" loading="lazy">
-            <figcaption>2025春夏系列设计灵感源自托斯卡纳云端光影</figcaption>
-        </figure>
+    <!-- 英文FAQ -->
+    <section class="py-5 bg-light d-none" id="en-faq" data-lang="en" hidden>
+        <div class="container">
+            <h2 class="text-center mb-5">FAQ</h2>
+            <div class="accordion" id="faqAccordionEn">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="en-faq1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#en-faqCollapse1" aria-expanded="true" aria-controls="en-faqCollapse1">
+                            How to choose the right size?
+                        </button>
+                    </h2>
+                    <div id="en-faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="en-faq1" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            Please refer to our size guide or contact customer service for one-on-one advice.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="en-faq2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#en-faqCollapse2" aria-expanded="false" aria-controls="en-faqCollapse2">
+                            How to request a return or exchange?
+                        </button>
+                    </h2>
+                    <div id="en-faqCollapse2" class="accordion-collapse collapse" aria-labelledby="en-faq2" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            Log in to your account and apply on the "My Orders" page, or contact customer service for assistance.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="en-faq3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#en-faqCollapse3" aria-expanded="false" aria-controls="en-faqCollapse3">
+                            Do you ship internationally?
+                        </button>
+                    </h2>
+                    <div id="en-faqCollapse3" class="accordion-collapse collapse" aria-labelledby="en-faq3" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            Yes, we support international shipping. Fees and delivery times may vary by country. Please contact customer service for details.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <address>
-            <h3>📞 客户服务</h3>
-            <ul>
-                <li>客服热线：<a href="tel:4008005200">400-800-5200</a>（9:00-21:00）</li>
-                <li>定制咨询：<a href="mailto:custom@mulinhua.com">custom@mulinhua.com</a></li>
-            </ul>
-        </address>
-        
-        <div class="social-links">
-            <a href="https://weibo.com/mulinhua" aria-label="微博官方账号">
-                <img src="https://mulinhua.com/social-weibo.png" class="social-icon" alt="微博" width="30" height="30">
-            </a>
-            <a href="https://www.xiaohongshu.com/user/mulinhua" aria-label="小红书官方账号">
-                <img src="https://mulinhua.com/social-redbook.png" class="social-icon" alt="小红书" width="30" height="30">
-            </a>
+    <!-- 英文客户评价 -->
+    <section class="py-5 d-none" id="en-reviews" data-lang="en" hidden>
+        <div class="container">
+            <h2 class="text-center mb-5">Customer Reviews</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="border rounded-3 p-4 h-100 shadow-sm bg-white">
+                        <div class="mb-2"><span class="text-accent">★★★★★</span></div>
+                        <blockquote class="mb-2">“The shoes are exquisite and comfortable. Customer service is very attentive!”</blockquote>
+                        <div class="text-muted small">— Ms. Wang, Shanghai</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded-3 p-4 h-100 shadow-sm bg-white">
+                        <div class="mb-2"><span class="text-accent">★★★★★</span></div>
+                        <blockquote class="mb-2">“Surprised by the quality and packaging. Very premium feel.”</blockquote>
+                        <div class="text-muted small">— Ms. Li, Beijing</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="border rounded-3 p-4 h-100 shadow-sm bg-white">
+                        <div class="mb-2"><span class="text-accent">★★★★★</span></div>
+                        <blockquote class="mb-2">“Perfect fit and very lightweight. Highly recommended!”</blockquote>
+                        <div class="text-muted small">— Ms. Chen, Guangzhou</div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="legal-info">
-            <small>© 2025 MULINHUA 沪ICP备202411110号  
-                <a href="https://mulinhua.com/privacy">隐私政策</a> | 
-                <a href="https://mulinhua.com/version">版本记录</a>
-            </small>
+    <!-- 产品详情页弹窗（简易版） -->
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="productModalLabel">产品详情</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <div id="productDetailContent">加载中...</div>
+          </div>
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <!-- 异步加载非关键JS -->
-    <script defer>
-    // 图片懒加载增强
-    document.addEventListener("DOMContentLoaded", function() {
-        const lazyImages = [].slice.call(document.querySelectorAll("img[loading='lazy']"));
-        
-        if ("IntersectionObserver" in window) {
-            let lazyImageObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        let lazyImage = entry.target;
-                        lazyImage.src = lazyImage.dataset.src;
-                        lazyImageObserver.unobserve(lazyImage);
-                    }
-                });
-            });
+    <!-- 购物车弹窗（简易版） -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="cartModalLabel">购物袋</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <div id="cartContent">购物袋为空</div>
+          </div>
+          <!-- 结算按钮，放在购物车弹窗底部 -->
+          <div class="modal-footer">
+            <button class="btn btn-primary w-100" onclick="onCheckout()">结算下单</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-            lazyImages.forEach(function(lazyImage) {
-                lazyImage.dataset.src = lazyImage.src;
-                lazyImageObserver.observe(lazyImage);
-            });
+    <!-- 用户登录弹窗（简易版） -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">用户登录</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="loginEmail" class="form-label" data-i18n="emailLabel">邮箱</label>
+                <input type="email" class="form-control" id="loginEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="loginPassword" class="form-label" data-i18n="pwdLabel">密码</label>
+                <input type="password" class="form-control" id="loginPassword" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100" data-i18n="loginBtn">登录</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 注册/找回密码弹窗 -->
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="registerModalLabel">用户注册</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <form id="registerForm">
+              <div class="mb-3">
+                <label for="registerEmail" class="form-label">邮箱</label>
+                <input type="email" class="form-control" id="registerEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="registerNickname" class="form-label">昵称</label>
+                <input type="text" class="form-control" id="registerNickname" required>
+              </div>
+              <div class="mb-3">
+                <label for="registerPhone" class="form-label">手机号</label>
+                <input type="tel" class="form-control" id="registerPhone" required>
+              </div>
+              <div class="mb-3">
+                <label for="registerAddress" class="form-label">收货地址</label>
+                <input type="text" class="form-control" id="registerAddress">
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword" class="form-label">密码</label>
+                <input type="password" class="form-control" id="registerPassword" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">注册</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="forgotModal" tabindex="-1" aria-labelledby="forgotModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="forgotModalLabel">找回密码</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+          </div>
+          <div class="modal-body">
+            <form id="forgotForm">
+              <div class="mb-3">
+                <label for="forgotEmail" class="form-label">邮箱</label>
+                <input type="email" class="form-control" id="forgotEmail" required>
+              </div>
+              <div class="mb-3">
+                <label for="forgotNewPwd" class="form-label">新密码</label>
+                <input type="password" class="form-control" id="forgotNewPwd" required>
+              </div>
+              <div class="mb-3">
+                <label for="forgotNickname" class="form-label">新昵称</label>
+                <input type="text" class="form-control" id="forgotNickname">
+              </div>
+              <div class="mb-3">
+                <label for="forgotPhone" class="form-label">新手机号</label>
+                <input type="tel" class="form-control" id="forgotPhone">
+              </div>
+              <div class="mb-3">
+                <label for="forgotAddress" class="form-label">新收货地址</label>
+                <input type="text" class="form-control" id="forgotAddress">
+              </div>
+              <button type="submit" class="btn btn-primary w-100">发送重置链接</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 引入Bootstrap 5 JS（含Popper，需放在自定义JS前） -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js" nonce="mlh2025"></script>
+    <script nonce="mlh2025">
+    // 国际化字典补充更多字段和提示
+    const i18nDict = {
+      'zh-CN': {
+        email: '邮箱',
+        pwd: '密码',
+        nickname: '昵称',
+        phone: '手机号',
+        address: '收货地址',
+        login: '登录',
+        register: '注册',
+        forgot: '找回密码',
+        sendReset: '发送重置链接',
+        logout: '退出登录',
+        bagEmpty: '购物袋为空',
+        checkoutDemo: '结算功能仅为演示，未进行真实交易。',
+        emailRequired: '请输入邮箱',
+        emailInvalid: '邮箱格式不正确',
+        pwdRequired: '请输入密码',
+        pwdWeak: '密码至少6位，需包含字母和数字',
+        nicknameRequired: '请输入昵称',
+        phoneRequired: '请输入手机号',
+        phoneInvalid: '手机号格式不正确',
+        loginFail: '邮箱或密码错误',
+        regEmailExist: '邮箱已注册',
+        regSuccess: '注册成功，已自动登录',
+        moreBtn: '查看更多',
+        addToCart: '加入购物袋',
+        remove: '移除',
+        minus: '减少数量',
+        plus: '增加数量',
+        close: '关闭',
+        checkout: '结算下单',
+        addressRequired: '请输入收货地址',
+        resetSuccess: '密码重置成功，已自动登录',
+        userNotExist: '该邮箱未注册',
+      },
+      'en': {
+        email: 'Email',
+        pwd: 'Password',
+        nickname: 'Nickname',
+        phone: 'Phone',
+        address: 'Shipping Address',
+        login: 'Login',
+        register: 'Register',
+        forgot: 'Forgot Password',
+        sendReset: 'Send Reset Link',
+        logout: 'Logout',
+        bagEmpty: 'Your bag is empty',
+        checkoutDemo: 'Checkout is for demo only. No real transaction will occur.',
+        emailRequired: 'Please enter your email',
+        emailInvalid: 'Invalid email format',
+        pwdRequired: 'Please enter your password',
+        pwdWeak: 'Password must be at least 6 characters and contain letters and numbers',
+        nicknameRequired: 'Please enter your nickname',
+        phoneRequired: 'Please enter your phone number',
+        phoneInvalid: 'Invalid phone number',
+        loginFail: 'Incorrect email or password.',
+        regEmailExist: 'Email already registered.',
+        regSuccess: 'Registration successful. Logged in automatically.',
+        moreBtn: 'View More',
+        addToCart: 'Add to Bag',
+        remove: 'Remove',
+        minus: 'Minus',
+        plus: 'Plus',
+        close: 'Close',
+        checkout: 'Checkout',
+        addressRequired: 'Please enter your shipping address',
+        resetSuccess: 'Password reset successful. Logged in automatically.',
+        userNotExist: 'This email is not registered',
+      }
+    };
+    function t(key) {
+      const lang = document.documentElement.lang || 'zh-CN';
+      return i18nDict[lang][key] || key;
+    }
+    // 多语言切换核心逻辑
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-current', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+      document.querySelectorAll('[data-lang]').forEach(el => {
+        el.hidden = el.dataset.lang !== lang;
+        if(el.classList.contains('d-none')) el.classList.remove('d-none');
+      });
+      setTimeout(() => {
+        document.querySelectorAll('.btn-close').forEach(btn => {
+          btn.setAttribute('aria-label', t('close'));
+        });
+      }, 100);
+      // 动态切换表单label和按钮
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (i18nDict[lang][key]) el.textContent = i18nDict[lang][key];
+      });
+      // 动态切换input的placeholder
+      document.getElementById('loginEmail')?.setAttribute('placeholder', t('email'));
+      document.getElementById('loginPassword')?.setAttribute('placeholder', t('pwd'));
+      document.getElementById('registerEmail')?.setAttribute('placeholder', t('email'));
+      document.getElementById('registerNickname')?.setAttribute('placeholder', t('nickname'));
+      document.getElementById('registerPhone')?.setAttribute('placeholder', t('phone'));
+      document.getElementById('registerAddress')?.setAttribute('placeholder', t('address'));
+      document.getElementById('registerPassword')?.setAttribute('placeholder', t('pwd'));
+      document.getElementById('forgotEmail')?.setAttribute('placeholder', t('email'));
+      document.getElementById('forgotNewPwd')?.setAttribute('placeholder', t('pwd'));
+      document.getElementById('forgotNickname')?.setAttribute('placeholder', t('nickname'));
+      document.getElementById('forgotPhone')?.setAttribute('placeholder', t('phone'));
+      document.getElementById('forgotAddress')?.setAttribute('placeholder', t('address'));
+      renderUserBar();
+      renderCart();
+    }
+    function switchLang(lang) { setLang(lang); }
+
+    // 购物车数据结构与持久化
+    var cart = JSON.parse(sessionStorage.getItem('cart') || '[]');
+    function saveCart() {
+      sessionStorage.setItem('cart', JSON.stringify(cart));
+    }
+    function updateCartCount() {
+      document.getElementById('cartCount').textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+    }
+    function renderCart() {
+      var cartContent = document.getElementById('cartContent');
+      if (!cart.length) {
+        cartContent.innerHTML = (document.documentElement.lang === 'en' ? 'Your bag is empty' : '购物袋为空');
+        updateCartCount();
+        return;
+      }
+      var html = '<ul class="list-group mb-3">';
+      cart.forEach((item, idx) => {
+        html += `<li class="list-group-item d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <img src="${item.img}" alt="${item.name}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;margin-right:12px;">
+            <div>
+              <div class="fw-bold">${item.name}</div>
+              <div class="text-muted small">${item.desc || ''}</div>
+            </div>
+          </div>
+          <div class="text-end">
+            <div class="text-accent mb-1">${item.priceStr}</div>
+            <div class="input-group input-group-sm align-items-center" style="width:110px;">
+              <button class="btn btn-outline-dark cart-minus" data-idx="${idx}" aria-label="-">-</button>
+              <input type="number" min="1" class="form-control cart-qty" data-idx="${idx}" value="${item.qty}" style="width:40px;text-align:center;">
+              <button class="btn btn-outline-dark cart-plus" data-idx="${idx}" aria-label="+">+</button>
+            </div>
+            <button class="btn btn-link text-danger p-0 mt-1 cart-remove" data-idx="${idx}" aria-label="移除">✕</button>
+          </div>
+        </li>`;
+      });
+      html += '</ul>';
+      cartContent.innerHTML = html;
+      updateCartCount();
+    }
+    function getProductInfo(id) {
+      var products = {
+        '1': {
+          name: '水晶之夜系列',
+          desc: '手工镶嵌施华洛世奇水晶',
+          price: 3980,
+          priceStr: '¥3,980',
+          img: 'product1.webp',
+          en: { name: 'Crystal Night', desc: 'Hand-inlaid Swarovski crystals', price: 599, priceStr: '$599', img: 'product5.jpg' }
+        },
+        '2': {
+          name: '商务典雅系列',
+          desc: '精选意大利小牛皮',
+          price: 3680,
+          priceStr: '¥3,680',
+          img: 'product2.webp',
+          en: { name: 'Business Elegance', desc: 'Premium Italian calfskin', price: 549, priceStr: '$549', img: 'product6.jpg' }
+        },
+        '3': {
+          name: '休闲漫步系列',
+          desc: '轻盈鞋底，柔软内衬',
+          price: 2980,
+          priceStr: '¥2,980',
+          img: 'product3.webp',
+          en: { name: 'Leisure Walk', desc: 'Lightweight sole, soft lining', price: 439, priceStr: '$439', img: 'product7.jpg' }
+        },
+        '4': {
+          name: '春风系列',
+          desc: '多色可选，金色扣饰',
+          price: 3280,
+          priceStr: '¥3,280',
+          img: 'product4.webp',
+          en: { name: 'Spring Breeze', desc: 'Multiple colors, golden buckle', price: 499, priceStr: '$499', img: 'product8.jpg' }
         }
+      };
+      var lang = document.documentElement.lang;
+      var p = products[id];
+      if (!p) return null;
+      if (lang === 'en' && p.en) {
+        return { ...p.en, id };
+      }
+      return { ...p, id };
+    }
+    function handleAddToCart(e, id) {
+      var info = getProductInfo(id);
+      if (!info) return;
+      var idx = cart.findIndex(item => item.id === id);
+      if (idx > -1) {
+        cart[idx].qty += 1;
+      } else {
+        cart.push({ ...info, qty: 1 });
+      }
+      saveCart();
+      renderCart();
+      updateCartCount();
+      var modal = document.getElementById('cartModal');
+      if (modal && window.bootstrap) new bootstrap.Modal(modal).show();
+    }
+    function onCheckout() {
+      alert(t('checkoutDemo'));
+      cart = [];
+      saveCart();
+      renderCart();
+      updateCartCount();
+      var modal = document.getElementById('cartModal');
+      if (modal && window.bootstrap) {
+        var instance = bootstrap.Modal.getInstance(modal);
+        if (instance) instance.hide();
+      }
+    }
+    // 用户栏渲染与登录/注册/登出
+    function renderUserBar() {
+      var userBar = document.getElementById('userBar');
+      var email = localStorage.getItem('mlh_user_current');
+      if (email) {
+        userBar.innerHTML = `<span style="font-weight:bold;">${email}</span> <button class="btn btn-sm btn-outline-dark ms-2" id="logoutBtn">${document.documentElement.lang === 'en' ? 'Logout' : '退出登录'}</button>`;
+        document.getElementById('authBtns').style.display = 'none';
+        var logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+          logoutBtn.onclick = function() {
+            localStorage.removeItem('mlh_user_current');
+            renderUserBar();
+          };
+        }
+      } else {
+        userBar.innerHTML = '';
+        document.getElementById('authBtns').style.display = '';
+      }
+    }
+    // 登录表单提交处理
+    function handleLoginForm() {
+      var loginForm = document.getElementById('loginForm');
+      if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var email = document.getElementById('loginEmail').value.trim();
+          var pwd = document.getElementById('loginPassword').value;
+          var err = '';
+          if (!email) err = t('emailRequired');
+          else if (!/^\S+@\S+\.\S+$/.test(email)) err = t('emailInvalid');
+          else if (!pwd) err = t('pwdRequired');
+          if (err) {
+            showFormError(loginForm, err);
+            return;
+          }
+          var users = JSON.parse(localStorage.getItem('mlh_users') || '{}');
+          if (users[email] && users[email].pwd === pwd) {
+            localStorage.setItem('mlh_user_current', email);
+            renderUserBar();
+            bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+          } else {
+            showFormError(loginForm, t('loginFail'));
+          }
+        });
+      }
+    }
+    // 找回密码表单提交处理（细化校验和提示）
+    function handleForgotForm() {
+      var forgotForm = document.getElementById('forgotForm');
+      if (forgotForm) {
+        forgotForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var email = document.getElementById('forgotEmail').value.trim();
+          var pwd = document.getElementById('forgotNewPwd').value;
+          var nickname = document.getElementById('forgotNickname').value;
+          var phone = document.getElementById('forgotPhone').value;
+          var address = document.getElementById('forgotAddress').value;
+          var err = '';
+          if (!email) err = t('emailRequired');
+          else if (!/^\S+@\S+\.\S+$/.test(email)) err = t('emailInvalid');
+          else if (!pwd) err = t('pwdRequired');
+          else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(pwd)) err = t('pwdWeak');
+          else if (nickname && nickname.length < 2) err = t('nicknameRequired');
+          else if (phone && !/^1[3-9]\d{9}$/.test(phone)) err = t('phoneInvalid');
+          else if (address && address.length < 4) err = t('addressRequired');
+          if (err) {
+            showFormError(forgotForm, err);
+            return;
+          }
+          var users = JSON.parse(localStorage.getItem('mlh_users') || '{}');
+          if (!users[email]) {
+            showFormError(forgotForm, t('userNotExist'));
+            return;
+          }
+          users[email] = {
+            ...users[email],
+            pwd,
+            nickname: nickname || users[email].nickname,
+            phone: phone || users[email].phone,
+            address: address || users[email].address
+          };
+          localStorage.setItem('mlh_users', JSON.stringify(users));
+          localStorage.setItem('mlh_user_current', email);
+          renderUserBar();
+          bootstrap.Modal.getInstance(document.getElementById('forgotModal')).hide();
+          alert(t('resetSuccess'));
+        });
+      }
+    }
+    // 注册表单提交处理（细化校验和提示）
+    function handleRegisterForm() {
+      var regForm = document.getElementById('registerForm');
+      if (regForm) {
+        regForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          var email = document.getElementById('registerEmail').value.trim();
+          var pwd = document.getElementById('registerPassword').value;
+          var nickname = document.getElementById('registerNickname').value;
+          var phone = document.getElementById('registerPhone').value;
+          var address = document.getElementById('registerAddress').value;
+          var err = '';
+          if (!email) err = t('emailRequired');
+          else if (!/^\S+@\S+\.\S+$/.test(email)) err = t('emailInvalid');
+          else if (!nickname || nickname.length < 2) err = t('nicknameRequired');
+          else if (!phone) err = t('phoneRequired');
+          else if (!/^1[3-9]\d{9}$/.test(phone)) err = t('phoneInvalid');
+          else if (!address || address.length < 4) err = t('addressRequired');
+          else if (!pwd) err = t('pwdRequired');
+          else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/.test(pwd)) err = t('pwdWeak');
+          var users = JSON.parse(localStorage.getItem('mlh_users') || '{}');
+          if (!err && users[email]) err = t('regEmailExist');
+          if (err) {
+            showFormError(regForm, err);
+            return;
+          }
+          users[email] = { pwd, nickname, phone, address };
+          localStorage.setItem('mlh_users', JSON.stringify(users));
+          localStorage.setItem('mlh_user_current', email);
+          renderUserBar();
+          bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+          alert(t('regSuccess'));
+        });
+      }
+    }
+    // 表单错误显示
+    function showFormError(form, msg) {
+      let err = form.querySelector('.form-error');
+      if (!err) {
+        err = document.createElement('div');
+        err.className = 'form-error text-danger mb-2';
+        form.prepend(err);
+      }
+      err.textContent = msg;
+    }
+    // 购物车操作事件委托
+    function bindCartEvents() {
+      var cartContent = document.getElementById('cartContent');
+      cartContent.addEventListener('click', function(e) {
+        var idx = e.target.dataset.idx;
+        if (e.target.classList.contains('cart-minus')) {
+          if (cart[idx].qty > 1) cart[idx].qty--;
+          saveCart(); renderCart(); updateCartCount();
+        }
+        if (e.target.classList.contains('cart-plus')) {
+          cart[idx].qty++;
+          saveCart(); renderCart(); updateCartCount();
+        }
+        if (e.target.classList.contains('cart-remove')) {
+          cart.splice(idx, 1);
+          saveCart(); renderCart(); updateCartCount();
+        }
+      });
+      cartContent.addEventListener('change', function(e) {
+        if (e.target.classList.contains('cart-qty')) {
+          var idx = e.target.dataset.idx;
+          var val = parseInt(e.target.value, 10);
+          if (val > 0) {
+            cart[idx].qty = val;
+            saveCart(); renderCart(); updateCartCount();
+          }
+        }
+      });
+    }
+    // 页面加载时统一初始化
+    window.addEventListener('DOMContentLoaded', function() {
+      setLang(document.documentElement.lang || 'zh-CN');
+      document.body.addEventListener('click', function(e) {
+        var btn = e.target.closest('.add-to-cart');
+        if(btn) handleAddToCart(e, btn.dataset.id);
+      });
+      document.querySelectorAll('#authBtns button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          var id = btn.getAttribute('onclick')?.match(/getElementById\('(.+?)'\)/)?.[1];
+          if(id && window.bootstrap) {
+            e.preventDefault();
+            var modal = document.getElementById(id);
+            if(modal) new bootstrap.Modal(modal).show();
+          }
+        });
+      });
+      var cartBtn = document.getElementById('cartBtn');
+      if(cartBtn) {
+        cartBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          var modal = document.getElementById('cartModal');
+          if(modal && window.bootstrap) new bootstrap.Modal(modal).show();
+        });
+      }
+      renderCart();
+      updateCartCount();
+      renderUserBar();
+      handleLoginForm();
+      handleRegisterForm();
+      handleForgotForm();
+      bindCartEvents();
     });
     </script>
 </body>
