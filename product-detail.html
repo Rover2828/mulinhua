@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>产品详情 - MULINHUA</title>
+  <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="logo.png" type="image/png">
+  <style>
+    body { background: #faf9f6; color: #232323; font-family: 'Microsoft YaHei', Arial, sans-serif; }
+    .product-detail-wrap {
+      background: #fff;
+      border-radius: 2rem;
+      box-shadow: 0 8px 32px rgba(44,44,44,0.10);
+      padding: 2.5rem 2rem 2rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .product-img-lg {
+      max-width: 420px;
+      width: 100%;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 24px rgba(44,44,44,0.10);
+      background: #f7f7f7;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      margin: 0 auto;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .product-img-lg:hover {
+      box-shadow: 0 12px 48px rgba(212,175,55,0.18);
+      transform: scale(1.03);
+    }
+    .product-info {
+      flex: 1 1 320px;
+      min-width: 320px;
+      max-width: 520px;
+      padding-left: 0.5rem;
+    }
+    .product-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #232323;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    .product-price {
+      color: #d4af37;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1.2rem;
+    }
+    .product-desc {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .product-detail-actions {
+      margin-bottom: 2rem;
+    }
+    .product-detail-actions label {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .product-detail-actions select {
+      min-width: 80px;
+      border-radius: 1.5rem;
+      padding: 0.3rem 1.2rem;
+      border: 1px solid #e0e0e0;
+      margin-right: 1rem;
+    }
+    .btn-primary {
+      background: #d4af37;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 600;
+      padding: 0.7rem 2.5rem;
+      font-size: 1.1rem;
+      box-shadow: 0 2px 8px rgba(212,175,55,0.08);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: #bfa13a;
+      transform: translateY(-2px) scale(1.04);
+    }
+    @media (max-width: 991px) {
+      .product-detail-wrap { flex-direction: column; align-items: center; padding: 1.5rem 0.5rem; }
+      .product-info { padding-left: 0; max-width: 100%; }
+    }
+    @media (max-width: 576px) {
+      .product-detail-wrap { padding: 0.5rem 0.2rem; }
+      .product-title { font-size: 1.3rem; }
+      .product-price { font-size: 1.2rem; }
+    }
+    /* 评价区块美化 */
+    .review {
+      background: #f8f7f4;
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 8px rgba(44,44,44,0.04);
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.2rem;
+      border-left: 4px solid #d4af37;
+      font-size: 1.05rem;
+    }
+    .star { color: #d4af37; font-size: 1.1rem; margin-right: 0.3rem; }
+    #reviewForm textarea { border-radius: 1rem; min-height: 60px; }
+    #reviewForm .btn { border-radius: 2rem; }
+    #reviews { margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-white shadow-sm mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="index.html"><img src="logo.png" alt="MULINHUA" height="40"></a>
+      <a href="index.html" class="btn btn-outline-dark">返回首页</a>
+    </div>
+  </nav>
+  <div class="container mb-5">
+    <div class="product-detail-wrap">
+      <div class="text-center" style="flex:1 1 320px;min-width:260px;max-width:420px;">
+        <img id="productImg" class="product-img-lg" src="" alt="产品大图">
+      </div>
+      <div class="product-info">
+        <h1 id="productName" class="product-title"></h1>
+        <div class="product-price" id="productPrice"></div>
+        <div class="product-desc" id="productDesc"></div>
+        <div class="product-detail-actions mb-3">
+          <label for="sizeSelect" class="form-label">尺码/Size</label>
+          <select class="form-select w-auto d-inline-block" id="sizeSelect"></select>
+            <option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option>
+          </select>
+          <button class="btn btn-primary px-5" id="addToCartBtn">加入购物袋</button>
+        </div>
+      </div>
+    </div>
+    <hr class="my-5">
+    <h3 class="mb-4">商品评价 / Reviews</h3>
+    <div id="reviews"></div>
+    <form id="reviewForm" class="mb-5">
+      <div class="mb-2">
+        <label for="reviewText" class="form-label">发表评价</label>
+        <textarea class="form-control" id="reviewText" rows="2" required></textarea>
+      </div>
+      <button class="btn btn-outline-dark" type="submit">提交评价</button>
+    </form>
+  </div>
+  <script>
+    // 产品数据（示例）
+    const products = {
+      '水晶之夜系列': {img:'product1.jpg', price:'¥3,980', desc:'手工镶嵌施华洛世奇水晶，璀璨闪耀，适合晚宴与重要场合。'},
+      '商务典雅系列': {img:'product2.jpg', price:'¥3,680', desc:'精选意大利小牛皮，极致舒适，彰显职场女性自信风采。'},
+      '休闲漫步系列': {img:'product3.jpg', price:'¥2,980', desc:'轻盈鞋底，柔软内衬，适合日常出行与休闲时光。'},
+      '春风系列': {img:'product4.jpg', price:'¥3,280', desc:'多色可选，金色扣饰，轻盈舒适，点亮春日造型。'},
+      'Crystal Night': {img:'product5.jpg', price:'$599', desc:'Hand-inlaid Swarovski crystals, dazzling for gala nights.'},
+      'Business Elegance': {img:'product6.jpg', price:'$549', desc:'Premium Italian calfskin, ultimate comfort for professionals.'},
+      'Leisure Walk': {img:'product7.jpg', price:'$439', desc:'Lightweight sole, soft lining, perfect for daily outings.'},
+      'Spring Breeze': {img:'product8.jpg', price:'$499', desc:'Multiple colors, golden buckle, light and stylish for spring.'}
+    };
+    // 获取参数
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    const p = products[name] || products['水晶之夜系列'];
+    document.getElementById('productName').innerText = name || '水晶之夜系列';
+    document.getElementById('productImg').src = p.img;
+    document.getElementById('productImg').alt = name;
+    document.getElementById('productPrice').innerText = p.price;
+    document.getElementById('productDesc').innerText = p.desc;
+    // 购物车交互
+let cart = [];
+let currentUser = null;
+
+// 用户登录状态管理
+function updateUserUI() {
+  const loginBtn = document.querySelector('button[onclick*="loginModal"]');
+  let userBar = document.getElementById('userBar');
+  if (!userBar) {
+    userBar = document.createElement('div');
+    userBar.id = 'userBar';
+    userBar.style.position = 'fixed';
+    userBar.style.top = '1.2rem';
+    userBar.style.left = '7rem';
+    userBar.style.zIndex = '201';
+    document.body.appendChild(userBar);
+  }
+  if (currentUser) {
+    loginBtn.style.display = 'none';
+    userBar.innerHTML = `<span style='color:var(--accent-color);font-weight:bold;'>${currentUser}</span> <button class='btn btn-link btn-sm' id='profileBtn'>资料</button> <button class='btn btn-link btn-sm' id='logoutBtn'>退出</button>`;
+    document.getElementById('logoutBtn').onclick = function() {
+      localStorage.removeItem('m_user');
+      currentUser = null;
+      updateUserUI();
+      loadCart();
+    };
+    document.getElementById('profileBtn').onclick = showProfileModal;
+  } else {
+    loginBtn.style.display = '';
+    userBar.innerHTML = '';
+  }
+}
+
+function saveCart() {
+  if(currentUser) {
+    localStorage.setItem('m_cart_' + currentUser, JSON.stringify(cart));
+  } else {
+    localStorage.setItem('m_cart_guest', JSON.stringify(cart));
+  }
+}
+function loadCart() {
+  if(currentUser) {
+    cart = JSON.parse(localStorage.getItem('m_cart_' + currentUser) || '[]');
+  } else {
+    cart = JSON.parse(localStorage.getItem('m_cart_guest') || '[]');
+  }
+  renderCart();
+}
+// 监听storage事件实现多页面同步
+window.addEventListener('storage', function(e) {
+  if(e.key && (e.key.startsWith('m_cart_') || e.key==='m_user')) {
+    if(e.key==='m_user') {
+      currentUser = localStorage.getItem('m_user');
+      updateUserUI();
+    }
+    loadCart();
+  }
+});
+
+function renderCart() {
+  const cartContent = document.getElementById('cartContent');
+  if(cart.length===0) {
+    cartContent.innerHTML = '购物袋为空';
+  } else {
+    cartContent.innerHTML = cart.map(item=>`<div class='d-flex justify-content-between align-items-center mb-2'><span>${item}</span><button class='btn btn-sm btn-outline-danger remove-item' data-name='${item}'>移除</button></div>`).join('')+
+      `<hr><div class='text-end'><button class='btn btn-success' id='checkoutBtn'>去结算</button></div>`;
+  }
+  saveCart();
+}
+document.querySelectorAll('.btn-primary[aria-label*="加入购物袋"], .btn-primary[aria-label*="Add to Bag"]').forEach(btn=>{
+  btn.onclick = function(){
+    const name = this.closest('.product-card').querySelector('.card-title').innerText;
+    cart.push(name);
+    renderCart();
+    new bootstrap.Modal(document.getElementById('cartModal')).show();
+  }
+});
+document.getElementById('cartModal').addEventListener('shown.bs.modal', function(){
+  document.querySelectorAll('.remove-item').forEach(btn=>{
+    btn.onclick = function(){
+      cart = cart.filter(i=>i!==this.dataset.name);
+      renderCart();
+    }
+  });
+  const checkoutBtn = document.getElementById('checkoutBtn');
+  if(checkoutBtn) {
+    checkoutBtn.onclick = function(){
+      alert('结算成功！感谢您的购买。');
+      cart = [];
+      renderCart();
+      bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    }
+  }
+});
+
+// 登录表单交互
+// 登录后保存用户信息到localStorage
+// 登录后刷新UI和购物车
+const loginForm = document.getElementById('loginForm');
+loginForm.onsubmit = function(e){
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value;
+  const pwd = document.getElementById('loginPassword').value;
+  if(!email.match(/^\S+@\S+\.\S+$/)){
+    alert('请输入有效邮箱'); return;
+  }
+  if(pwd.length<6){
+    alert('密码长度至少6位'); return;
+  }
+  localStorage.setItem('m_user', email);
+  currentUser = email;
+  updateUserUI();
+  loadCart();
+  alert('登录成功！');
+  bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+}
+// 注册表单扩展，支持昵称、手机号、收货地址（详情页）
+      function showRegisterModal() {
+        let modal = document.getElementById('registerModal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.className = 'modal fade';
+          modal.id = 'registerModal';
+          modal.tabIndex = -1;
+          modal.innerHTML = `
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">注册</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+              </div>
+              <div class="modal-body">
+                <form id="registerForm">
+                  <div class="mb-3">
+                    <label class="form-label">邮箱</label>
+                    <input type="email" class="form-control" id="regEmail" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">昵称</label>
+                    <input type="text" class="form-control" id="regNickname" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">手机号</label>
+                    <input type="tel" class="form-control" id="regPhone" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">收货地址</label>
+                    <input type="text" class="form-control" id="regAddress">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">密码</label>
+                    <input type="password" class="form-control" id="regPwd" required>
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">注册</button>
+                </form>
+              </div>
+            </div>
+          </div>`;
+          document.body.appendChild(modal);
+        }
+        setTimeout(()=>{
+          document.getElementById('registerForm').onsubmit = function(e){
+            e.preventDefault();
+            let email = document.getElementById('regEmail').value.trim();
+            let nickname = document.getElementById('regNickname').value.trim();
+            let phone = document.getElementById('regPhone').value.trim();
+            let address = document.getElementById('regAddress').value.trim();
+            let pwd = document.getElementById('regPwd').value;
+            if(!/^\S+@\S+\.\S+$/.test(email)){alert('请输入有效邮箱');return;}
+            if(!nickname){alert('请输入昵称');return;}
+            if(!/^1[3-9]\d{9}$/.test(phone)){alert('请输入有效手机号');return;}
+            if(pwd.length<6){alert('密码至少6位');return;}
+            let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+            if(users[email]){alert('邮箱已注册');return;}
+            users[email] = {pwd, nickname, phone, address, cart:[]};
+            localStorage.setItem('m_users', JSON.stringify(users));
+            alert('注册成功，请登录！');
+            bootstrap.Modal.getInstance(document.getElementById('registerModal')).hide();
+          }
+        }, 300);
+        new bootstrap.Modal(modal).show();
+      }
+      // 找回密码表单扩展，支持昵称、手机号、收货地址重置（详情页）
+      function showResetModal() {
+        let modal = document.getElementById('resetModal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.className = 'modal fade';
+          modal.id = 'resetModal';
+          modal.tabIndex = -1;
+          modal.innerHTML = `
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">找回密码</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+              </div>
+              <div class="modal-body">
+                <form id="resetForm">
+                  <div class="mb-3">
+                    <label class="form-label">邮箱</label>
+                    <input type="email" class="form-control" id="resetEmail" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">新密码</label>
+                    <input type="password" class="form-control" id="resetPwd" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">新昵称</label>
+                    <input type="text" class="form-control" id="resetNickname">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">新手机号</label>
+                    <input type="tel" class="form-control" id="resetPhone">
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">新收货地址</label>
+                    <input type="text" class="form-control" id="resetAddress">
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">重置</button>
+                </form>
+              </div>
+            </div>
+          </div>`;
+          document.body.appendChild(modal);
+        }
+        setTimeout(()=>{
+          document.getElementById('resetForm').onsubmit = function(e){
+            e.preventDefault();
+            let email = document.getElementById('resetEmail').value.trim();
+            let pwd = document.getElementById('resetPwd').value;
+            let nickname = document.getElementById('resetNickname').value.trim();
+            let phone = document.getElementById('resetPhone').value.trim();
+            let address = document.getElementById('resetAddress').value.trim();
+            let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+            if(!users[email]){alert('邮箱未注册');return;}
+            if(pwd.length<6){alert('密码至少6位');return;}
+            users[email].pwd = pwd;
+            if(nickname) users[email].nickname = nickname;
+            if(phone && /^1[3-9]\d{9}$/.test(phone)) users[email].phone = phone;
+            if(address) users[email].address = address;
+            localStorage.setItem('m_users', JSON.stringify(users));
+            alert('重置成功，请登录！');
+            bootstrap.Modal.getInstance(document.getElementById('resetModal')).hide();
+          }
+        }, 300);
+        new bootstrap.Modal(modal).show();
+      }
+    // 评价持久化
+    function renderReviews() {
+      const reviews = JSON.parse(localStorage.getItem('reviews_'+name)||'[]');
+      document.getElementById('reviews').innerHTML = reviews.map(r=>`<div class='review'><span class='star'>★★★★★</span><div>${r}</div></div>`).join('') || '<div class="text-muted">暂无评价</div>';
+    }
+    renderReviews();
+    document.getElementById('reviewForm').onsubmit = function(e){
+      e.preventDefault();
+      const val = document.getElementById('reviewText').value.trim();
+      if(val.length<2) return;
+      const reviews = JSON.parse(localStorage.getItem('reviews_'+name)||'[]');
+      reviews.unshift(val);
+      localStorage.setItem('reviews_'+name, JSON.stringify(reviews));
+      document.getElementById('reviewText').value = '';
+      renderReviews();
+    };
+    // 详情页购物车结构与主站一致，支持数量、图片、价格
+      function addToCart(product) {
+        if (!currentUser) { showLoginModal(); return; }
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        let cart = users[currentUser].cart || [];
+        let idx = cart.findIndex(item=>item.id===product.id);
+        if(idx>-1){
+          cart[idx].qty += 1;
+        }else{
+          cart.push({
+            id: product.id,
+            name: product.name,
+            img: product.img,
+            price: product.price,
+            qty: 1
+          });
+        }
+        users[currentUser].cart = cart;
+        localStorage.setItem('m_users', JSON.stringify(users));
+        updateCartUI();
+      }
+      function updateCartUI() {
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        let cart = (users[currentUser] && users[currentUser].cart) || [];
+        let cartList = document.getElementById('cartList');
+        let total = 0;
+        cartList.innerHTML = cart.map(item=>`
+          <div class='cart-item d-flex align-items-center mb-2'>
+            <img src='${item.img}' alt='' style='width:48px;height:48px;object-fit:cover;border-radius:6px;margin-right:8px;'>
+            <div class='flex-grow-1'>
+              <div>${item.name}</div>
+              <div class='text-muted small'>￥${item.price} × ${item.qty}</div>
+            </div>
+            <div class='d-flex flex-column align-items-end'>
+              <button class='btn btn-sm btn-outline-secondary mb-1' onclick='changeCartQty("${item.id}", -1)'>-</button>
+              <button class='btn btn-sm btn-outline-secondary' onclick='changeCartQty("${item.id}", 1)'>+</button>
+              <button class='btn btn-sm btn-link text-danger' onclick='removeFromCart("${item.id}")'>移除</button>
+            </div>
+          </div>
+        `).join('');
+        cart.forEach(item=>{total+=item.price*item.qty});
+        document.getElementById('cartTotal').innerText = '￥'+total;
+      }
+      function changeCartQty(id, delta) {
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        let cart = users[currentUser].cart || [];
+        let idx = cart.findIndex(item=>item.id===id);
+        if(idx>-1){
+          cart[idx].qty += delta;
+          if(cart[idx].qty<1) cart[idx].qty = 1;
+          users[currentUser].cart = cart;
+          localStorage.setItem('m_users', JSON.stringify(users));
+          updateCartUI();
+        }
+      }
+      function removeFromCart(id) {
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        let cart = users[currentUser].cart || [];
+        users[currentUser].cart = cart.filter(item=>item.id!==id);
+        localStorage.setItem('m_users', JSON.stringify(users));
+        updateCartUI();
+      }
+      // 登录/切换用户时自动切换购物车内容
+      function loginUser(email, pwd) {
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        if(!users[email] || users[email].pwd!==pwd){
+          alert('账号或密码错误');
+          return false;
+        }
+        currentUser = email;
+        localStorage.setItem('m_currentUser', currentUser);
+        updateUserUI();
+        updateCartUI();
+        return true;
+      }
+      function logoutUser() {
+        currentUser = null;
+        localStorage.removeItem('m_currentUser');
+        updateUserUI();
+        updateCartUI();
+      }
+      window.addEventListener('storage', function(e){
+        if(e.key==='m_users'||e.key==='m_currentUser'){
+          updateCartUI();
+        }
+      });
+      document.addEventListener('DOMContentLoaded', function(){
+        currentUser = localStorage.getItem('m_currentUser');
+        updateUserUI();
+        updateCartUI();
+      });
+      // 用户资料管理弹窗（详情页）
+      function showProfileModal() {
+        let users = JSON.parse(localStorage.getItem('m_users')||'{}');
+        let user = users[currentUser];
+        if (!user) return;
+        let modal = document.getElementById('profileModal');
+        if (!modal) {
+          modal = document.createElement('div');
+          modal.className = 'modal fade';
+          modal.id = 'profileModal';
+          modal.tabIndex = -1;
+          modal.innerHTML = `
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">用户资料</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="关闭"></button>
+              </div>
+              <div class="modal-body">
+                <form id="profileForm">
+                  <div class="mb-3">
+                    <label class="form-label">邮箱</label>
+                    <input type="email" class="form-control" value="${currentUser}" disabled>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">昵称</label>
+                    <input type="text" class="form-control" id="profileNickname" value="${user.nickname||''}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">手机号</label>
+                    <input type="tel" class="form-control" id="profilePhone" value="${user.phone||''}" required>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label">收货地址</label>
+                    <input type="text" class="form-control" id="profileAddress" value="${user.address||''}">
+                  </div>
+                  <button type="submit" class="btn btn-primary w-100">保存修改</button>
+                </form>
+              </div>
+            </div>
+          </div>`;
+          document.body.appendChild(modal);
+        } else {
+          modal.querySelector('#profileNickname').value = user.nickname||'';
+          modal.querySelector('#profilePhone').value = user.phone||'';
+          modal.querySelector('#profileAddress').value = user.address||'';
+        }
+        setTimeout(()=>{
+          document.getElementById('profileForm').onsubmit = function(e){
+            e.preventDefault();
+            let nickname = document.getElementById('profileNickname').value.trim();
+            let phone = document.getElementById('profilePhone').value.trim();
+            let address = document.getElementById('profileAddress').value.trim();
+            if(!nickname){alert('请输入昵称');return;}
+            if(!/^1[3-9]\d{9}$/.test(phone)){alert('请输入有效手机号');return;}
+            users[currentUser].nickname = nickname;
+            users[currentUser].phone = phone;
+            users[currentUser].address = address;
+            localStorage.setItem('m_users', JSON.stringify(users));
+            alert('资料已保存！');
+            bootstrap.Modal.getInstance(document.getElementById('profileModal')).hide();
+            updateUserUI();
+          }
+        }, 300);
+        new bootstrap.Modal(modal).show();
+      }
+  </script>
+</body>
+</html>
