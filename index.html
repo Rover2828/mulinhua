@@ -497,7 +497,11 @@
       let posts = getCurrentPosts();
       return posts.slice(0, currentPage * pageSize);
     }
-    // 轮询状态控制
+    // 获取当前要展示的动态（支持筛选/搜索/默认）
+function getCurrentPosts() {
+  return filteredPosts && filteredPosts.length > 0 ? filteredPosts : demoPosts;
+}
+// 轮询状态控制
     function updatePollStatus(active) {
       const pollDot = document.getElementById('pollDot');
       const pollText = document.getElementById('pollText');
@@ -938,7 +942,14 @@
       updateMemberInfo();
       updateFollowingList();
     }
-    // 管理员登录校验
+    // 显示管理员登录弹窗
+function showLoginModal() {
+  document.getElementById('loginModal').style.display = 'flex';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPwd').value = '';
+  document.getElementById('loginError').style.display = 'none';
+}
+// 管理员登录校验
 function loginAdmin(e) {
   e.preventDefault();
   const user = document.getElementById('loginUser').value.trim();
