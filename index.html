@@ -6,14 +6,39 @@
   <title>MULINHUA 朋友圈</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --bg-color: #f7f8fa;
+      --text-color: #222;
+      --card-bg: #fff;
+      --header-bg: #fff;
+      --border-color: #e0e0e0;
+      --primary-color: #1a73e8;
+      --hover-color: #155ab6;
+      --success-color: #4CAF50;
+      --warning-color: #FFC107;
+      --error-color: #e53935;
+    }
+
+    .dark-mode {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --card-bg: #1e1e1e;
+      --header-bg: #1e1e1e;
+      --border-color: #444;
+      --primary-color: #64b5f6;
+      --hover-color: #90caf9;
+    }
+
     body {
       margin: 0;
       font-family: 'Montserrat', Arial, sans-serif;
-      background: #f7f8fa;
-      color: #222;
+      background: var(--bg-color);
+      color: var(--text-color);
+      transition: background 0.3s, color 0.3s;
     }
+    
     header {
-      background: #fff;
+      background: var(--header-bg);
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       padding: 1.2rem 2rem;
       display: flex;
@@ -23,14 +48,16 @@
       top: 0;
       z-index: 10;
     }
+    
     .logo {
       font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: 2px;
-      color: #1a73e8;
+      color: var(--primary-color);
     }
+    
     .admin-btn, .notify-btn {
-      background: #1a73e8;
+      background: var(--primary-color);
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -40,16 +67,19 @@
       margin-left: 1rem;
       transition: background 0.2s;
     }
+    
     .admin-btn:hover, .notify-btn:hover {
-      background: #155ab6;
+      background: var(--hover-color);
     }
+    
     main {
       max-width: 600px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+    
     .post {
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
       margin-bottom: 1.5rem;
@@ -58,48 +88,220 @@
       flex-direction: column;
       gap: 0.7rem;
     }
+    
+    .post-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
     .post .author {
       font-weight: 700;
-      color: #1a73e8;
+      color: var(--primary-color);
       font-size: 1.1rem;
+      cursor: pointer;
     }
+    
+    .post .time {
+      color: #888;
+      font-size: 0.85rem;
+    }
+    
     .post .content {
       font-size: 1.05rem;
       line-height: 1.7;
     }
+    
     .post img {
       max-width: 100%;
       border-radius: 8px;
       margin-top: 0.5rem;
     }
+    
+    .post-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .action-btn {
+      background: none;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.9rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    
+    .action-btn:hover {
+      background: rgba(0,0,0,0.05);
+    }
+    
+    .action-btn.liked {
+      color: var(--error-color);
+    }
+    
+    .action-btn.faved {
+      color: var(--warning-color);
+    }
+    
+    .comments {
+      margin-top: 0.8rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.8rem;
+    }
+    
+    .comment {
+      margin-bottom: 0.6rem;
+      padding: 0.4rem 0.6rem;
+      background: rgba(0,0,0,0.03);
+      border-radius: 6px;
+    }
+    
+    .comment-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+    }
+    
+    .comment-user {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .comment-time {
+      color: #888;
+    }
+    
+    .comment-text {
+      margin-top: 4px;
+    }
+    
+    .comment-form {
+      display: flex;
+      margin-top: 0.8rem;
+      gap: 8px;
+    }
+    
+    .comment-input {
+      flex-grow: 1;
+      padding: 8px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .comment-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .filter-btn {
+      padding: 6px 12px;
+      background: rgba(0,0,0,0.05);
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn.active {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .search-bar {
+      display: flex;
+      margin-bottom: 1.5rem;
+    }
+    
+    .search-input {
+      flex-grow: 1;
+      padding: 8px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: 20px 0 0 20px;
+      background: var(--card-bg);
+      color: var(--text-color);
+    }
+    
+    .search-btn {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 0 20px 20px 0;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    
+    .theme-toggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      z-index: 99;
+    }
+    
     @media (max-width: 700px) {
       main { max-width: 100%; }
       header { padding: 1rem; }
+      .post-actions { flex-wrap: wrap; }
     }
+    
     .admin-panel {
       display: none;
       flex-direction: column;
       gap: 1rem;
-      background: #fff;
+      background: var(--card-bg);
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04);
       padding: 1.5rem;
       margin-bottom: 2rem;
     }
+    
     .admin-panel input, .admin-panel textarea {
       width: 100%;
       padding: 0.7rem;
-      border: 1px solid #e0e0e0;
+      border: 1px solid var(--border-color);
       border-radius: 6px;
       font-size: 1rem;
+      background: var(--card-bg);
+      color: var(--text-color);
     }
+    
     .admin-panel label {
       font-weight: 600;
       margin-bottom: 0.3rem;
       display: block;
     }
+    
     .admin-panel .submit-btn {
-      background: #1a73e8;
+      background: var(--primary-color);
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -108,16 +310,53 @@
       cursor: pointer;
       margin-top: 0.5rem;
     }
+    
     .admin-panel .submit-btn:hover {
-      background: #155ab6;
+      background: var(--hover-color);
     }
+    
+    .delete-btn {
+      background: var(--error-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+    
+    .poll-status {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      padding: 8px 15px;
+      background: rgba(0,0,0,0.75);
+      color: white;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+    }
+    
+    .poll-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    
+    .poll-active { background: var(--success-color); }
+    .poll-idle { background: var(--warning-color); }
   </style>
 </head>
 <body>
   <header>
     <span class="logo">MULINHUA 朋友圈</span>
     <div>
-      <button class="notify-btn" onclick="requestNotify()">🔔<span id="notifyCount" style="font-size:0.9em;background:#e53935;color:#fff;border-radius:50%;padding:0 6px;margin-right:4px;display:none;">0</span>通知</button>
+      <button class="notify-btn" onclick="requestNotify()">
+        🔔<span id="notifyCount" style="font-size:0.9em;background:var(--error-color);color:#fff;border-radius:50%;padding:0 6px;margin-left:4px;display:none;">0</span>
+      </button>
       <button class="admin-btn" id="memberBtn" onclick="showMemberCenter()">会员中心</button>
       <button class="admin-btn" id="loginBtn" onclick="showUserLoginModal()">登录/注册</button>
       <button class="admin-btn" id="adminBtn" onclick="showLoginModal()">管理员入口</button>
@@ -133,59 +372,229 @@
         <input type="file" id="postImage" accept="image/*">
         <button class="submit-btn" type="submit">发布</button>
       </form>
+      <div style="margin-top:1.2rem;">
+        <label>导入动态（mmts.txt）</label>
+        <input type="file" id="mmtsFile" accept=".txt" onchange="importMmtsFile(event)">
+        <span style="color:#888;font-size:0.95em;">仅管理员可用，内容格式为JSON数组</span>
+      </div>
     </div>
+    
+    <div class="search-bar">
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索动态或用户...">
+      <button class="search-btn" onclick="searchPosts()">搜索</button>
+    </div>
+    
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterFeed('all')">全部</button>
+      <button class="filter-btn" onclick="filterFeed('following')">关注</button>
+      <button class="filter-btn" onclick="filterFeed('popular')">热门</button>
+    </div>
+    
     <div id="feed">
       <!-- 动态内容流 -->
     </div>
   </main>
+  
+  <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+  
+  <!-- 轮询状态指示器 -->
+  <div class="poll-status" id="pollStatus">
+    <div class="poll-dot poll-active" id="pollDot"></div>
+    <span id="pollText">轮询中...</span>
+  </div>
+  
   <!-- 用户登录/注册弹窗 -->
   <div id="userLoginModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:101;align-items:center;justify-content:center;">
-    <div style="background:#fff;padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
-      <div style="font-weight:700;font-size:1.2rem;color:#1a73e8;">用户登录/注册</div>
-      <input id="userLoginUser" type="text" placeholder="用户名/手机号/邮箱" style="padding:0.7rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;">
-      <input id="userLoginPwd" type="password" placeholder="密码" style="padding:0.7rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;">
-      <div id="userLoginError" style="color:#e53935;font-size:0.98rem;display:none;"></div>
+    <div style="background:var(--card-bg);padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
+      <div style="font-weight:700;font-size:1.2rem;color:var(--primary-color);">用户登录/注册</div>
+      <input id="userLoginUser" type="text" placeholder="用户名/手机号/邮箱" style="padding:0.7rem;border:1px solid var(--border-color);border-radius:6px;font-size:1rem;background:var(--card-bg);color:var(--text-color);">
+      <input id="userLoginPwd" type="password" placeholder="密码" style="padding:0.7rem;border:1px solid var(--border-color);border-radius:6px;font-size:1rem;background:var(--card-bg);color:var(--text-color);">
+      <div id="userLoginError" style="color:var(--error-color);font-size:0.98rem;display:none;"></div>
       <button class="submit-btn" onclick="return userLogin(event)">登录</button>
       <button class="submit-btn" style="background:#eee;color:#333;" onclick="closeUserLoginModal();return false;">取消</button>
       <div style="text-align:center;color:#888;font-size:0.98rem;">或使用社交账号登录</div>
       <div style="display:flex;gap:1rem;justify-content:center;">
-        <button class="submit-btn" style="background:#07c160;" onclick="alert('微信登录暂未接入')">微信</button>
-        <button class="submit-btn" style="background:#498ad5;" onclick="alert('QQ登录暂未接入')">QQ</button>
-        <button class="submit-btn" style="background:#e6162d;" onclick="alert('微博登录暂未接入')">微博</button>
+        <button class="submit-btn" style="background:#07c160;" onclick="socialLogin('wechat')">微信</button>
+        <button class="submit-btn" style="background:#498ad5;" onclick="socialLogin('qq')">QQ</button>
+        <button class="submit-btn" style="background:#e6162d;" onclick="socialLogin('weibo')">微博</button>
       </div>
     </div>
   </div>
+  
   <!-- 会员中心弹窗 -->
   <div id="memberCenterModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:102;align-items:center;justify-content:center;">
-    <div style="background:#fff;padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
-      <div style="font-weight:700;font-size:1.2rem;color:#1a73e8;">会员中心</div>
+    <div style="background:var(--card-bg);padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
+      <div style="font-weight:700;font-size:1.2rem;color:var(--primary-color);">会员中心</div>
       <div id="memberInfo">请先登录</div>
+      <div style="margin-top:1rem;">
+        <h3>我的关注</h3>
+        <div id="followingList" style="margin-top:0.5rem;"></div>
+      </div>
       <button class="submit-btn" style="background:#eee;color:#333;" onclick="closeMemberCenter();return false;">关闭</button>
     </div>
   </div>
+  
   <!-- 管理员登录弹窗 -->
   <div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:100;align-items:center;justify-content:center;">
-    <div style="background:#fff;padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
-      <div style="font-weight:700;font-size:1.2rem;color:#1a73e8;">管理员登录</div>
-      <input id="loginUser" type="text" placeholder="账户" style="padding:0.7rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;">
-      <input id="loginPwd" type="password" placeholder="密码" style="padding:0.7rem;border:1px solid #e0e0e0;border-radius:6px;font-size:1rem;">
-      <div id="loginError" style="color:#e53935;font-size:0.98rem;display:none;"></div>
+    <div style="background:var(--card-bg);padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
+      <div style="font-weight:700;font-size:1.2rem;color:var(--primary-color);">管理员登录</div>
+      <input id="loginUser" type="text" placeholder="账户" style="padding:0.7rem;border:1px solid var(--border-color);border-radius:6px;font-size:1rem;background:var(--card-bg);color:var(--text-color);">
+      <input id="loginPwd" type="password" placeholder="密码" style="padding:0.7rem;border:1px solid var(--border-color);border-radius:6px;font-size:1rem;background:var(--card-bg);color:var(--text-color);">
+      <div id="loginError" style="color:var(--error-color);font-size:0.98rem;display:none;"></div>
       <button class="submit-btn" onclick="return loginAdmin(event)">登录</button>
       <button class="submit-btn" style="background:#eee;color:#333;" onclick="closeLoginModal();return false;">取消</button>
     </div>
   </div>
+  
+  <!-- 用户资料弹窗 -->
+  <div id="userProfileModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:103;align-items:center;justify-content:center;">
+    <div style="background:var(--card-bg);padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:300px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
+      <div style="font-weight:700;font-size:1.2rem;color:var(--primary-color);">用户资料</div>
+      <div id="profileName"></div>
+      <button class="submit-btn" onclick="followUser(currentProfile)">关注</button>
+      <button class="submit-btn" style="background:#eee;color:#333;" onclick="closeUserProfile();return false;">关闭</button>
+    </div>
+  </div>
+  
   <script>
+    // 轮询相关变量
+    let pollInterval = null;
+    let lastPollTime = Date.now();
+    let lastPostCount = 0;
+    const POLL_INTERVAL = 10 * 60 * 1000; // 10分钟的毫秒数
+    let currentFilter = 'all';
+    let filteredPosts = [];
+    let currentProfile = null;
+    
+    // 示例动态数据
+    let demoPosts = [
+      {
+        id: 1,
+        author: '管理员',
+        content: '欢迎来到 MULINHUA 朋友圈！',
+        image: '',
+        time: new Date(Date.now() - 300000).toISOString(),
+        likes: 12,
+        favs: 5
+      },
+      {
+        id: 2,
+        author: '管理员',
+        content: '支持手机推送通知，记得点击上方按钮获取权限。',
+        image: '',
+        time: new Date(Date.now() - 600000).toISOString(),
+        likes: 8,
+        favs: 3
+      }
+    ];
+    let lastImportedMmts = '';
+    
+    // 分页/无限滚动参数
+    let pageSize = 5;
+    let currentPage = 1;
+    let isLoading = false;
+    function getPagedPosts() {
+      let posts = getCurrentPosts();
+      return posts.slice(0, currentPage * pageSize);
+    }
+    // 轮询状态控制
+    function updatePollStatus(active) {
+      const pollDot = document.getElementById('pollDot');
+      const pollText = document.getElementById('pollText');
+      
+      if (active) {
+        pollDot.className = 'poll-dot poll-active';
+        pollText.textContent = '轮询中...';
+      } else {
+        pollDot.className = 'poll-dot poll-idle';
+        const elapsed = Math.floor((Date.now() - lastPollTime) / 1000);
+        const minutes = Math.floor(elapsed / 60);
+        const seconds = elapsed % 60;
+        pollText.textContent = `${minutes}分${seconds}秒后将轮询`;
+      }
+    }
+    
+    // 初始化轮询
+    function initPolling() {
+      lastPostCount = demoPosts.length;
+      
+      // 启动轮询定时器
+      pollInterval = setInterval(checkForNewPosts, POLL_INTERVAL);
+      updatePollStatus(true);
+      
+      // 页面可见性事件监听器
+      document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'visible') {
+          // 页面可见时立即检查
+          checkForNewPosts();
+          if (!pollInterval) {
+            pollInterval = setInterval(checkForNewPosts, POLL_INTERVAL);
+          }
+          updatePollStatus(true);
+        } else {
+          // 页面不可见时暂停轮询
+          clearInterval(pollInterval);
+          pollInterval = null;
+          updatePollStatus(false);
+        }
+      });
+      
+      // 初始检查一次
+      checkForNewPosts();
+    }
+    
+    // 检查新帖子的函数
+    function checkForNewPosts() {
+      lastPollTime = Date.now();
+      updatePollStatus(false);
+      
+      console.log(`[${new Date().toLocaleTimeString()}] 轮询检查新消息...`);
+      
+      const currentPostCount = demoPosts.length;
+      if (currentPostCount > lastPostCount) {
+        const newPostCount = currentPostCount - lastPostCount;
+        lastPostCount = currentPostCount;
+        
+        // 更新通知计数
+        updateNotifyCount(newPostCount);
+        
+        // 发送通知
+        if (Notification.permission === 'granted') {
+          new Notification('有新动态发布', {
+            body: `管理员发布了${newPostCount}条新消息`,
+            icon: '/favicon.ico'
+          });
+        }
+        
+        console.log(`检测到${newPostCount}条新消息`);
+        
+        // 刷新动态流
+        renderFeed();
+      } else {
+        console.log('没有发现新动态');
+      }
+    }
+    
+    // 更新通知计数
+    function updateNotifyCount(count) {
+      const notifyCountElement = document.getElementById('notifyCount');
+      notifyCountElement.textContent = count;
+      notifyCountElement.style.display = count > 0 ? 'inline-block' : 'none';
+    }
+    
     // 管理员面板显示/隐藏
     function toggleAdminPanel() {
       const panel = document.getElementById('adminPanel');
       panel.style.display = panel.style.display === 'flex' ? 'none' : 'flex';
     }
+    
     // 获取通知权限
     function requestNotify() {
       if (!('Notification' in window)) {
         alert('当前浏览器不支持通知功能');
         return;
       }
+      
       Notification.requestPermission().then(function(permission) {
         if (permission === 'granted') {
           alert('通知权限已获取！');
@@ -194,194 +603,340 @@
         }
       });
     }
-    // 简单的本地内容流（可替换为后端API）
-    const demoPosts = [
-      {
-        author: '管理员',
-        content: '欢迎来到 MULINHUA 朋友圈！',
-        image: ''
-      },
-      {
-        author: '管理员',
-        content: '支持手机推送通知，记得点击上方按钮获取权限。',
-        image: ''
-      }
-    ];
-    function renderFeed() {
-      const feed = document.getElementById('feed');
-      feed.innerHTML = '';
-      demoPosts.slice().reverse().forEach((post, idx) => {
-        const div = document.createElement('div');
-        div.className = 'post';
-        div.innerHTML = `<div class="author">${post.author}</div>
-          <div class="content">${post.content}</div>
-          ${post.image ? `<img src="${post.image}" alt="图片">` : ''}
-          <div style="display:flex;gap:1rem;align-items:center;margin-top:0.5rem;">
-            <button onclick="likePost(${idx})">👍<span id="like${idx}">${post.likes||0}</span></button>
-            <button onclick="favPost(${idx})">⭐<span id="fav${idx}">${post.favs||0}</span></button>
-            <button onclick="sharePost(${idx})">🔗分享</button>
-          </div>
-          <div style="margin-top:0.5rem;">
-            <b>标签：</b>${post.tags||'无'}
-            <b style="margin-left:1em;">分类：</b>${post.category||'未分类'}
-            <b style="margin-left:1em;">归档：</b>${post.archive||'2025-06'}
-            ${post.top?' <span style="color:#e53935;font-weight:700;">[置顶]</span>':''}
-            ${post.recommend?' <span style="color:#1a73e8;font-weight:700;">[推荐]</span>':''}
-          </div>
-          <div style="margin-top:0.5rem;"><b>相关文章：</b>${post.related||'无'}</div>
-          <div style="margin-top:0.5rem;">
-            <b>评论：</b>
-            <div id="comments${idx}">${(post.comments||[]).map(c=>`<div style='border-bottom:1px solid #eee;padding:2px 0;'><b>${c.user}：</b>${c.text}</div>`).join('')}</div>
-            <form onsubmit="return addComment(event,${idx})" style="display:flex;gap:0.5rem;margin-top:0.3rem;">
-              <input type="text" id="commentInput${idx}" placeholder="写评论..." style="flex:1;padding:0.3rem 0.5rem;border-radius:4px;border:1px solid #eee;">
-              <button type="submit">发送</button>
-            </form>
-          </div>
-        `;
-        feed.appendChild(div);
-      });
+    
+    // 导入mmts.txt文件并解析为动态流
+    function importMmtsFile(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        try {
+          const txt = evt.target.result;
+          if (txt === lastImportedMmts) {
+            alert('内容未变化');
+            return;
+          }
+          const arr = JSON.parse(txt);
+          if (!Array.isArray(arr)) throw new Error('格式错误');
+          demoPosts = arr;
+          lastImportedMmts = txt;
+          renderFeed();
+          lastPostCount = demoPosts.length;
+          if (window.Notification && Notification.permission === 'granted') {
+            new Notification('动态已更新', { body: '已导入最新动态', icon: '/favicon.ico' });
+          }
+        } catch (err) {
+          alert('mmts.txt格式错误，需为JSON数组！');
+        }
+      };
+      reader.readAsText(file, 'utf-8');
     }
-    renderFeed();
-    // 管理员发布内容（本地演示）
+
+    // 管理员发布内容
     function submitPost(e) {
       e.preventDefault();
       const content = document.getElementById('postContent').value.trim();
       const imageInput = document.getElementById('postImage');
       if (!content) return false;
+      
+      function notifyNewPost(text) {
+        if (window.Notification && Notification.permission === 'granted') {
+          new Notification('新动态', {
+            body: text.length > 40 ? text.slice(0, 40) + '...' : text,
+            icon: '/favicon.ico'
+          });
+        }
+      }
+      
+      const newPost = {
+        id: demoPosts.length + 1,
+        author: '管理员',
+        content,
+        image: '',
+        time: new Date().toISOString(),
+        likes: 0,
+        favs: 0
+      };
+      
       if (imageInput.files && imageInput.files[0]) {
         const reader = new FileReader();
         reader.onload = function(evt) {
-          demoPosts.push({ author: '管理员', content, image: evt.target.result });
+          newPost.image = evt.target.result;
+          demoPosts.unshift(newPost);
           renderFeed();
+          notifyNewPost(content);
+          lastPostCount = demoPosts.length;
+          document.getElementById('postForm').reset();
         };
         reader.readAsDataURL(imageInput.files[0]);
       } else {
-        demoPosts.push({ author: '管理员', content, image: '' });
+        demoPosts.unshift(newPost);
         renderFeed();
+        notifyNewPost(content);
+        lastPostCount = demoPosts.length;
+        document.getElementById('postForm').reset();
       }
-      document.getElementById('postForm').reset();
+      
       return false;
     }
-    // 管理员登录逻辑
-    const ADMIN_USER = 'admin';
-    const ADMIN_PWD = 'mulin2025';
-    function isAdminLoggedIn() {
-      return localStorage.getItem('mlh_admin') === '1';
+    
+    // ====== GitHub 动态同步相关 ======
+    const GITHUB_OWNER = '你的github用户名'; // TODO: 替换为你的github用户名
+    const GITHUB_REPO = '你的仓库名'; // TODO: 替换为你的仓库名
+    const GITHUB_FILEPATH = '动态/mlh.txt';
+    const GITHUB_TOKEN = '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'; // TODO: 管理员端填写你的token，前端生产环境请勿暴露token
+
+    // 获取动态（mlh.txt）
+    async function fetchGithubPosts() {
+      try {
+        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILEPATH}?t=${Date.now()}`;
+        const res = await fetch(url, { headers: { 'Accept': 'application/vnd.github.v3.raw' } });
+        if (!res.ok) throw new Error('获取动态失败');
+        const txt = await res.text();
+        const arr = JSON.parse(txt);
+        if (Array.isArray(arr)) {
+          demoPosts = arr;
+          lastImportedMmts = txt;
+          filteredPosts = [];
+          resetPaging();
+          renderFeed();
+        }
+      } catch (e) {
+        alert('无法从GitHub获取动态：' + e.message);
+      }
     }
-    function showLoginModal() {
+    // 管理员发布内容时同步到GitHub
+    async function pushGithubPosts() {
+      if (!GITHUB_TOKEN) return; // 未配置token不推送
+      try {
+        // 先获取sha
+        const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILEPATH}`;
+        const res = await fetch(url, { headers: { 'Authorization': 'token ' + GITHUB_TOKEN } });
+        const data = await res.json();
+        const sha = data.sha;
+        // 更新内容
+        const content = btoa(unescape(encodeURIComponent(JSON.stringify(demoPosts, null, 2))));
+        const body = {
+          message: '发布新动态',
+          content,
+          sha
+        };
+        const putRes = await fetch(url, {
+          method: 'PUT',
+          headers: {
+            'Authorization': 'token ' + GITHUB_TOKEN,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        });
+        if (!putRes.ok) throw new Error('推送失败');
+      } catch (e) {
+        alert('同步到GitHub失败：' + e.message);
+      }
+    }
+    // 修改管理员发布逻辑，发布后同步
+    const originSubmitPost = submitPost;
+    submitPost = async function(e) {
+      const ret = originSubmitPost(e);
       if (isAdminLoggedIn()) {
-        document.getElementById('adminPanel').style.display = 'flex';
+        await pushGithubPosts();
+      }
+      return ret;
+    }
+    // 页面加载时预加载GitHub动态
+    window.addEventListener('DOMContentLoaded', function() {
+      fetchGithubPosts();
+    });
+    // 添加刷新按钮
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header > div');
+      const refreshBtn = document.createElement('button');
+      refreshBtn.className = 'admin-btn';
+      refreshBtn.textContent = '刷新';
+      refreshBtn.onclick = function() { fetchGithubPosts(); };
+      header.appendChild(refreshBtn);
+    });
+    
+    // 时间格式化
+    function formatTime(time) {
+      const now = new Date();
+      const postDate = new Date(time);
+      const diffSec = Math.floor((now - postDate) / 1000);
+      
+      if (diffSec < 60) return '刚刚';
+      if (diffSec < 3600) return `${Math.floor(diffSec/60)}分钟前`;
+      if (diffSec < 86400) return `${Math.floor(diffSec/3600)}小时前`;
+      return `${postDate.getMonth()+1}月${postDate.getDate()}日`;
+    }
+    
+    // 动态筛选
+    function filterFeed(type) {
+      resetPaging();
+      currentFilter = type;
+      
+      // 更新按钮状态
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === 
+          (type === 'all' ? '全部' : type === 'following' ? '关注' : '热门'));
+      });
+      
+      filteredPosts = [];
+      renderFeed();
+    }
+    
+    // 搜索功能
+    function searchPosts() {
+      resetPaging();
+      const term = document.getElementById('searchInput').value.trim().toLowerCase();
+      const feed = document.getElementById('feed');
+      if (!term) {
+        renderFeed();
         return;
       }
-      document.getElementById('loginModal').style.display = 'flex';
-      document.getElementById('loginError').style.display = 'none';
-      document.getElementById('loginUser').value = '';
-      document.getElementById('loginPwd').value = '';
+      const keywords = term.split(/\s+/).filter(Boolean);
+      const results = demoPosts.filter(post => {
+        const text = (post.content + ' ' + post.author + ' ' + (post.comments ? post.comments.map(c => c.text + ' ' + c.user).join(' ') : '')).toLowerCase();
+        return keywords.every(kw => text.includes(kw));
+      });
+      filteredPosts = results;
+      renderFeed();
     }
-    function closeLoginModal() {
-      document.getElementById('loginModal').style.display = 'none';
+    // 高亮关键词和@用户
+    function highlightKeywords(text, keywords) {
+      if (!text) return '';
+      text = text.replace(/@([\u4e00-\u9fa5\w\-]+)/g, '<span style="color:var(--primary-color);font-weight:bold;">@$1</span>');
+      keywords.forEach(kw => {
+        if (!kw) return;
+        const reg = new RegExp(kw.replace(/[.*+?^${}()|[\\]\\]/g, '\\$&'), 'gi');
+        text = text.replace(reg, m => `<mark style=\"background:var(--warning-color);color:#222;\">${m}</mark>`);
+      });
+      return text;
     }
-    function loginAdmin(e) {
-      e.preventDefault();
-      const user = document.getElementById('loginUser').value.trim();
-      const pwd = document.getElementById('loginPwd').value;
-      if (user === ADMIN_USER && pwd === ADMIN_PWD) {
-        localStorage.setItem('mlh_admin', '1');
-        document.getElementById('adminPanel').style.display = 'flex';
-        document.getElementById('adminBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
-        closeLoginModal();
-      } else {
-        document.getElementById('loginError').innerText = '账户或密码错误';
-        document.getElementById('loginError').style.display = 'block';
+    // 评论点赞
+    function likeComment(postIdx, commentIdx) {
+      if (!demoPosts[postIdx].comments[commentIdx].likes) demoPosts[postIdx].comments[commentIdx].likes = 0;
+      demoPosts[postIdx].comments[commentIdx].likes++;
+      const el = document.getElementById(`comment-like-${demoPosts[postIdx].id}-${commentIdx}`);
+      if (el) el.textContent = demoPosts[postIdx].comments[commentIdx].likes;
+    }
+    // 图片预览弹窗
+    function previewImage(src, e) {
+      e.stopPropagation();
+      let modal = document.getElementById('imgPreviewModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'imgPreviewModal';
+        modal.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.7);z-index:200;display:flex;align-items:center;justify-content:center;';
+        modal.onclick = function() { modal.style.display = 'none'; };
+        document.body.appendChild(modal);
       }
-      return false;
+      modal.innerHTML = `<img src='${src}' style='max-width:90vw;max-height:90vh;border-radius:12px;box-shadow:0 2px 16px #0008;'>`;
+      modal.style.display = 'flex';
     }
-    function logoutAdmin() {
-      localStorage.removeItem('mlh_admin');
-      document.getElementById('adminPanel').style.display = 'none';
-      document.getElementById('adminBtn').style.display = 'inline-block';
-      document.getElementById('logoutBtn').style.display = 'none';
-    }
-    // 用户登录/注册弹窗逻辑
-    function showUserLoginModal() {
-      document.getElementById('userLoginModal').style.display = 'flex';
-      document.getElementById('userLoginError').style.display = 'none';
-      document.getElementById('userLoginUser').value = '';
-      document.getElementById('userLoginPwd').value = '';
-    }
-    function closeUserLoginModal() {
-      document.getElementById('userLoginModal').style.display = 'none';
-    }
-    function userLogin(e) {
-      e.preventDefault();
-      // 这里只做本地演示，实际应调用后端API
-      const user = document.getElementById('userLoginUser').value.trim();
-      const pwd = document.getElementById('userLoginPwd').value;
-      if (user && pwd) {
-        localStorage.setItem('mlh_user', user);
-        closeUserLoginModal();
-        updateMemberInfo();
-        document.getElementById('loginBtn').style.display = 'none';
-        document.getElementById('memberBtn').style.display = 'inline-block';
+    // 分页渲染动态流
+    function renderFeed() {
+      const feed = document.getElementById('feed');
+      let postsToShow = getPagedPosts();
+      let keywords = document.getElementById('searchInput').value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+      let html = '';
+      if (postsToShow.length === 0) {
+        html = '<div class="post"><div class="content">暂无动态</div></div>';
       } else {
-        document.getElementById('userLoginError').innerText = '请输入用户名和密码';
-        document.getElementById('userLoginError').style.display = 'block';
+        postsToShow.forEach((post, idx) => {
+          const isLiked = localStorage.getItem(`liked_${post.id}`) === 'true';
+          const isFaved = localStorage.getItem(`faved_${post.id}`) === 'true';
+          let safeImg = post.image ? post.image.replace(/'/g, "&#39;") : '';
+          let imageHtml = post.image ? `<img src="${post.image}" style="cursor:zoom-in;" onclick=\"previewImage('${safeImg}', event)\">` : '';
+          let content = highlightKeywords(post.content, keywords);
+          let author = highlightKeywords(post.author, keywords);
+          html += `
+            <div class="post">
+              <div class="post-header">
+                <div class="author" onclick="showUserProfile('${post.author}')">${author}</div>
+                <div class="time">${formatTime(post.time)}</div>
+              </div>
+              <div class="content">${content}</div>
+              ${imageHtml}
+              <div class="post-actions">
+                <button class="action-btn ${isLiked ? 'liked' : ''}" onclick="likePost(${idx})">👍 ${post.likes || 0}</button>
+                <button class="action-btn ${isFaved ? 'faved' : ''}" onclick="favPost(${idx})">⭐ ${post.favs || 0}</button>
+                <button class="action-btn" onclick="sharePost(${idx})">↗️ 分享</button>
+                ${isAdminLoggedIn() ? `<button class="delete-btn" onclick="deletePost(${idx})">删除</button>` : ''}
+              </div>
+              ${post.comments && post.comments.length > 0 ? `
+                <div class="comments">
+                  ${post.comments.map((comment, cidx) => `
+                    <div class="comment">
+                      <div class="comment-header">
+                        <div class="comment-user">${highlightKeywords(comment.user, keywords)}</div>
+                        <div class="comment-time">${formatTime(comment.time)}</div>
+                        <button class="action-btn comment-like-btn" onclick="likeComment(${idx},${cidx})">👍 <span id='comment-like-${post.id}-${cidx}'>${comment.likes||0}</span></button>
+                      </div>
+                      <div class="comment-text">${highlightKeywords(comment.text, keywords)}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+              
+              <form class="comment-form" onsubmit="return addComment(event, ${idx})">
+                <input type="text" class="comment-input" id="commentInput${idx}" placeholder="添加评论...">
+                <button type="submit" class="comment-btn">发送</button>
+              </form>
+            </div>
+          `;
+        });
       }
-      return false;
+      // 加载更多按钮
+      if (getCurrentPosts().length > postsToShow.length) {
+        html += `<div style='text-align:center;margin:1rem;'><button class='filter-btn' id='loadMoreBtn' onclick='loadMoreFeed()'>加载更多</button></div>`;
+      }
+      feed.innerHTML = html;
     }
-    // 会员中心逻辑
+    function loadMoreFeed() {
+      if (isLoading) return;
+      isLoading = true;
+      currentPage++;
+      renderFeed();
+      isLoading = false;
+    }
+    // 无限滚动
+    window.addEventListener('scroll', function() {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+        if (getCurrentPosts().length > getPagedPosts().length) {
+          loadMoreFeed();
+        }
+      }
+    });
+    function resetPaging() {
+      currentPage = 1;
+    }
+    // 修改filterFeed、setSort、clearSearch、showMemberCenter等调用renderFeed前加resetPaging()
+    function filterFeed(type) {
+      resetPaging();
+      currentFilter = type;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === 
+          (type === 'all' ? '全部' : type === 'following' ? '关注' : '热门'));
+      });
+      filteredPosts = [];
+      renderFeed();
+    }
+    function setSort(type) {
+      resetPaging();
+      currentSort = type;
+      renderFeed();
+    }
+    function clearSearch() {
+      resetPaging();
+      document.getElementById('searchInput').value = '';
+      filteredPosts = [];
+      renderFeed();
+    }
     function showMemberCenter() {
+      resetPaging();
       document.getElementById('memberCenterModal').style.display = 'flex';
       updateMemberInfo();
-    }
-    function closeMemberCenter() {
-      document.getElementById('memberCenterModal').style.display = 'none';
-    }
-    function updateMemberInfo() {
-      const user = localStorage.getItem('mlh_user');
-      document.getElementById('memberInfo').innerText = user ? `欢迎，${user}` : '请先登录';
-    }
-    // 页面加载时根据登录状态显示用户按钮
-    window.onload = function() {
-      if (isAdminLoggedIn()) {
-        document.getElementById('adminPanel').style.display = 'flex';
-        document.getElementById('adminBtn').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
-      } else {
-        document.getElementById('adminPanel').style.display = 'none';
-        document.getElementById('adminBtn').style.display = 'inline-block';
-        document.getElementById('logoutBtn').style.display = 'none';
-      }
-      if (localStorage.getItem('mlh_user')) {
-        document.getElementById('loginBtn').style.display = 'none';
-        document.getElementById('memberBtn').style.display = 'inline-block';
-      } else {
-        document.getElementById('loginBtn').style.display = 'inline-block';
-        document.getElementById('memberBtn').style.display = 'none';
-      }
-    }
-    function likePost(idx) {
-      demoPosts[idx].likes = (demoPosts[idx].likes||0)+1;
-      document.getElementById('like'+idx).innerText = demoPosts[idx].likes;
-    }
-    function favPost(idx) {
-      demoPosts[idx].favs = (demoPosts[idx].favs||0)+1;
-      document.getElementById('fav'+idx).innerText = demoPosts[idx].favs;
-    }
-    function sharePost(idx) {
-      alert('分享功能仅为演示，可对接微信/QQ/微博/复制链接等');
-    }
-    function addComment(e, idx) {
-      e.preventDefault();
-      const input = document.getElementById('commentInput'+idx);
-      const text = input.value.trim();
-      if (!text) return false;
-      if (!demoPosts[idx].comments) demoPosts[idx].comments = [];
-      const user = localStorage.getItem('mlh_user') || '游客';
-      demoPosts[idx].comments.push({user, text});
-      renderFeed();
-      return false;
+      updateFollowingList();
     }
   </script>
 </body>
