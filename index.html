@@ -435,7 +435,7 @@
   </div>
   
   <!-- 管理员登录弹窗 -->
-  <div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:100;align-items:center;justify-content:center;">
+  <div id="loginModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.18);z-index:100;display:flex;align-items:center;justify-content:center;">
     <div style="background:var(--card-bg);padding:2rem 2.2rem;border-radius:12px;box-shadow:0 2px 16px rgba(0,0,0,0.08);min-width:260px;max-width:90vw;display:flex;flex-direction:column;gap:1.2rem;">
       <div style="font-weight:700;font-size:1.2rem;color:var(--primary-color);">管理员登录</div>
       <input id="loginUser" type="text" placeholder="账户" style="padding:0.7rem;border:1px solid var(--border-color);border-radius:6px;font-size:1rem;background:var(--card-bg);color:var(--text-color);">
@@ -976,6 +976,35 @@ function logoutAdmin() {
   localStorage.removeItem('isAdmin');
   document.getElementById('logoutBtn').style.display = 'none';
   document.getElementById('adminPanel').style.display = 'none';
+}
+
+// 显示用户登录弹窗
+function showUserLoginModal() {
+  document.getElementById('userLoginModal').style.display = 'flex';
+  document.getElementById('userLoginUser').value = '';
+  document.getElementById('userLoginPwd').value = '';
+  document.getElementById('userLoginError').style.display = 'none';
+}
+// 关闭用户登录弹窗
+function closeUserLoginModal() {
+  document.getElementById('userLoginModal').style.display = 'none';
+}
+// 关闭会员中心弹窗
+function closeMemberCenter() {
+  document.getElementById('memberCenterModal').style.display = 'none';
+}
+// 关闭管理员登录弹窗
+function closeLoginModal() {
+  document.getElementById('loginModal').style.display = 'none';
+}
+// 更新会员信息（简单实现）
+function updateMemberInfo() {
+  const info = document.getElementById('memberInfo');
+  if (localStorage.getItem('isAdmin') === 'true') {
+    info.textContent = '管理员已登录';
+  } else {
+    info.textContent = '请先登录';
+  }
 }
   </script>
 </body>
